@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabase'; // Adjust path if your supabase client is located elsewhere
-import { Lock, Mail, AlertCircle, Loader2 } from 'lucide-react';
+import { useState, FormEvent } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { Zap, Mail, Lock, Loader2, ArrowRight, Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
-export const Login: React.FC = () => {
+export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+  const [showPw, setShowPw] = useState(false);
+  const [error, setError] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting'>('idle');
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
+    setError('');
+    setStatus('submitting');
 
     try {
-      // Authenticate directly against Supabase auth.users table
+      // Authenticate directly against your Supabase database
       const { data, error: authError } = await supabase.auth.signInWithPassword({
         email: email.trim(),
         password: password,
@@ -24,93 +25,135 @@ export const Login: React.FC = () => {
 
       if (authError) {
         setError(authError.message);
-      } else if (data.session) {
-        // Redirect to protected dashboard upon successful database validation
-        navigate('/dashboard');
+        setStatus('idle');
+        return;
       }
-    } catch (err) {
-      setError('An unexpected error occurred. Please try again.');
-    } finally {
-      setLoading(false);
+
+      if (data.session) {
+        navigate('/dashboard', { replace: true });
+      }
+    } catch {
+      setError('An unexpected network error occurred. Please try again.');
+      setStatus('idle');
     }
   };
 
   return (
-    <div className="min-h-[80vh] bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900">
-          Client Portal Sign In
-        </h2>
-        <p className="mt-2 text-center text-sm text-slate-600">
-          Authorized personnel only
-        </p>
-      </div>
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-50/40 px-5 py-28">
+      <div className="absolute inset-0 -z-10 bg-grid mask-fade-b" />
+      <div className="absolute -top-24 -right-24 -z-10 h-96 w-96 rounded-full bg-brand-200/40 blur-3xl" />
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow-sm border border-slate-200 rounded-xl sm:px-10">
-          {/* Error Banner */}
-          {error && (
-            <div className="mb-4 bg-red-50 border border-red-200 text-red-700 p-3 rounded-lg flex items-center gap-2 text-sm">
-              <AlertCircle className="w-5 h-5 shrink-0 text-red-500" />
-              <span>{error}</span>
-            </div>
-          )}
+      <div className="w-full max-w-md">
+        <Link to="/" className="mb-8 flex items-center justify-center gap-2.5">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow">
+            <Zap className="h-5 w-5" strokeWidth={2.5} />
+          </span>
+          <span className="font-display text-xl font-bold text-slatey-900">
+            Candela<span className="text-brand-600"> Energy</span>
+            <span className="ml-1 text-[11px] font-semibold text-slatey-400">
+              Nigeria Ltd.
+            </span>
+          </span>
+        </Link>
 
-          <form className="space-y-6" onSubmit={handleLogin}>
+        <div className="rounded-2xl border border-slatey-100 bg-white p-8 shadow-soft">
+          <h1 className="font-display text-2xl font-bold tracking-tight text-slatey-900">
+            Welcome back
+          </h1>
+          <p className="mt-1.5 text-sm text-slatey-500">
+            Sign in to your Candela client account.
+          </p>
+
+          <form onSubmit={onSubmit} className="mt-7 space-y-5">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Email Address
+              <label className="text-sm font-semibold text-slatey-800">
+                Email address
               </label>
-              <div className="relative rounded-md shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-slate-400" />
-                </div>
+              <div className="relative mt-2">
+                <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slatey-400" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm"
-                  placeholder="name@candelaenergygroup.com"
+                  placeholder="you@company.com"
+                  className="w-full rounded-xl border border-slatey-200 bg-white py-3 pl-11 pr-4 text-sm text-slatey-900 outline-none transition-all placeholder:text-slatey-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-100"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
+              <label className="text-sm font-semibold text-slatey-800">
                 Password
               </label>
-              <div className="relative rounded-md shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-slate-400" />
-                </div>
+              <div className="relative mt-2">
+                <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slatey-400" />
                 <input
-                  type="password"
+                  type={showPw ? 'text' : 'password'}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm"
                   placeholder="••••••••"
+                  className="w-full rounded-xl border border-slatey-200 bg-white py-3 pl-11 pr-11 text-sm text-slatey-900 outline-none transition-all placeholder:text-slatey-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-100"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPw((v) => !v)}
+                  aria-label={showPw ? 'Hide password' : 'Show password'}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slatey-400 transition-colors hover:text-slatey-600"
+                >
+                  {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
               </div>
             </div>
 
+            <div className="flex items-center justify-between text-sm">
+              <label className="flex items-center gap-2 text-slatey-600">
+                <input
+                  type="checkbox"
+                  className="h-4 w-4 rounded border-slatey-300 text-brand-600 focus:ring-brand-500"
+                />
+                Remember me
+              </label>
+              <a href="#" className="font-semibold text-brand-700 hover:text-brand-800">
+                Forgot password?
+              </a>
+            </div>
+
+            {error && (
+              <div className="flex items-center gap-2 rounded-lg bg-red-50 p-3 text-sm font-medium text-red-700 border border-red-100">
+                <AlertCircle className="h-4 w-4 shrink-0 text-red-500" />
+                <span>{error}</span>
+              </div>
+            )}
+
             <button
               type="submit"
-              disabled={loading}
-              className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-emerald-700 hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 disabled:opacity-50 transition-colors"
+              disabled={status === 'submitting'}
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 text-sm font-bold text-white shadow-glow transition-all hover:bg-brand-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-70"
             >
-              {loading ? (
-                <Loader2 className="w-5 h-5 animate-spin" />
+              {status === 'submitting' ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Signing in...
+                </>
               ) : (
-                'Sign In'
+                <>
+                  Sign in
+                  <ArrowRight className="h-4 w-4" />
+                </>
               )}
             </button>
           </form>
+
+          <p className="mt-6 text-center text-sm text-slatey-500">
+            New to Candela?{' '}
+            <Link to="/#contact" className="font-semibold text-brand-700 hover:text-brand-800">
+              Get a quote
+            </Link>
+          </p>
         </div>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default Login;
+}
