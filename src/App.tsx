@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { AuthProvider } from './context/AuthContext';
+import { ServicesCategories } from './components/ServicesCategories';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -23,16 +24,25 @@ function ScrollToHash() {
   return null;
 }
 
-function App() {
+export function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <ScrollToHash />
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white flex flex-col justify-between">
           <Navbar />
-          <main>
+          <main className="flex-grow">
             <Routes>
-              <Route path="/" element={<Home />} />
+              {/* Wrapped together inside element so ServicesCategories displays right under Home */}
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Home />
+                    <ServicesCategories />
+                  </>
+                }
+              />
               <Route path="/login" element={<Login />} />
               <Route
                 path="/dashboard"
