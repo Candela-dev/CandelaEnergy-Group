@@ -1,148 +1,116 @@
-import { useState, FormEvent } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Zap, Mail, Lock, Loader2, ArrowRight, Eye, EyeOff } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabase'; // Adjust path if your supabase client is located elsewhere
+import { Lock, Mail, AlertCircle, Loader2 } from 'lucide-react';
 
-export default function Login() {
-  const { login } = useAuth();
-  const navigate = useNavigate();
+export const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPw, setShowPw] = useState(false);
-  const [error, setError] = useState('');
-  const [status, setStatus] = useState<'idle' | 'submitting'>('idle');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  const onSubmit = async (e: FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setStatus('submitting');
+    setLoading(true);
+    setError(null);
+
     try {
-      await login(email, password);
-      navigate('/dashboard', { replace: true });
-    } catch {
-      setError('Unable to sign in. Please try again.');
-      setStatus('idle');
+      // Authenticate directly against Supabase auth.users table
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
+        email: email.trim(),
+        password: password,
+      });
+
+      if (authError) {
+        setError(authError.message);
+      } else if (data.session) {
+        // Redirect to protected dashboard upon successful database validation
+        navigate('/dashboard');
+      }
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-50/40 px-5 py-28">
-      <div className="absolute inset-0 -z-10 bg-grid mask-fade-b" />
-      <div className="absolute -top-24 -right-24 -z-10 h-96 w-96 rounded-full bg-brand-200/40 blur-3xl" />
+    <div className="min-h-[80vh] bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900">
+          Client Portal Sign In
+        </h2>
+        <p className="mt-2 text-center text-sm text-slate-600">
+          Authorized personnel only
+        </p>
+      </div>
 
-      <div className="w-full max-w-md">
-        <Link to="/" className="mb-8 flex items-center justify-center gap-2.5">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow">
-            <Zap className="h-5 w-5" strokeWidth={2.5} />
-          </span>
-          <span className="font-display text-xl font-bold text-slatey-900">
-            Candela<span className="text-brand-600"> Energy</span>
-            <span className="ml-1 text-[11px] font-semibold text-slatey-400">
-              Nigeria Ltd.
-            </span>
-          </span>
-        </Link>
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-4 shadow-sm border border-slate-200 rounded-xl sm:px-10">
+          {/* Error Banner */}
+          {error && (
+            <div className="mb-4 bg-red-50 border border-red-200 text-red-700 p-3 rounded-lg flex items-center gap-2 text-sm">
+              <AlertCircle className="w-5 h-5 shrink-0 text-red-500" />
+              <span>{error}</span>
+            </div>
+          )}
 
-        <div className="rounded-2xl border border-slatey-100 bg-white p-8 shadow-soft">
-          <h1 className="font-display text-2xl font-bold tracking-tight text-slatey-900">
-            Welcome back
-          </h1>
-          <p className="mt-1.5 text-sm text-slatey-500">
-            Sign in to your Candela client account.
-          </p>
-
-          <form onSubmit={onSubmit} className="mt-7 space-y-5">
+          <form className="space-y-6" onSubmit={handleLogin}>
             <div>
-              <label className="text-sm font-semibold text-slatey-800">
-                Email address
+              <label className="block text-sm font-medium text-slate-700 mb-1">
+                Email Address
               </label>
-              <div className="relative mt-2">
-                <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slatey-400" />
+              <div className="relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Mail className="h-5 w-5 text-slate-400" />
+                </div>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@company.com"
-                  className="w-full rounded-xl border border-slatey-200 bg-white py-3 pl-11 pr-4 text-sm text-slatey-900 outline-none transition-all placeholder:text-slatey-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-100"
+                  className="block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm"
+                  placeholder="name@candelaenergygroup.com"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-sm font-semibold text-slatey-800">
+              <label className="block text-sm font-medium text-slate-700 mb-1">
                 Password
               </label>
-              <div className="relative mt-2">
-                <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slatey-400" />
+              <div className="relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Lock className="h-5 w-5 text-slate-400" />
+                </div>
                 <input
-                  type={showPw ? 'text' : 'password'}
+                  type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm"
                   placeholder="••••••••"
-                  className="w-full rounded-xl border border-slatey-200 bg-white py-3 pl-11 pr-11 text-sm text-slatey-900 outline-none transition-all placeholder:text-slatey-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-100"
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPw((v) => !v)}
-                  aria-label={showPw ? 'Hide password' : 'Show password'}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slatey-400 transition-colors hover:text-slatey-600"
-                >
-                  {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                </button>
               </div>
             </div>
 
-            <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center gap-2 text-slatey-600">
-                <input
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-slatey-300 text-brand-600 focus:ring-brand-500"
-                />
-                Remember me
-              </label>
-              <a href="#" className="font-semibold text-brand-700 hover:text-brand-800">
-                Forgot password?
-              </a>
-            </div>
-
-            {error && (
-              <p className="rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-700">
-                {error}
-              </p>
-            )}
-
             <button
               type="submit"
-              disabled={status === 'submitting'}
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 text-sm font-bold text-white shadow-glow transition-all hover:bg-brand-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-70"
+              disabled={loading}
+              className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-emerald-700 hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 disabled:opacity-50 transition-colors"
             >
-              {status === 'submitting' ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  Signing in...
-                </>
+              {loading ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
               ) : (
-                <>
-                  Sign in
-                  <ArrowRight className="h-4 w-4" />
-                </>
+                'Sign In'
               )}
             </button>
           </form>
-
-          <p className="mt-6 text-center text-sm text-slatey-500">
-            New to Candela?{' '}
-            <Link to="/#contact" className="font-semibold text-brand-700 hover:text-brand-800">
-              Get a quote
-            </Link>
-          </p>
-          <p className="mt-4 rounded-lg bg-slatey-50 px-3 py-2 text-center text-[11px] text-slatey-500">
-            Demo mode — any email and password will sign you in.
-          </p>
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default Login;
