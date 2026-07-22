@@ -49,7 +49,7 @@ export default function Contact() {
               {[
                 { icon: Phone, label: 'Call us', value: '+234 806 780 2410' },
                 { icon: Mail, label: 'Email', value: 'michaelonuorah@candelaenergygroup.com' },
-                { icon: MapPin, label: 'HQ', value: '12 Adeola Odeku St, Victoria Island, Lagos' },
+                { icon: MapPin, label: 'HQ', value: 'Plot 3509 Divine Estate , Amuwo Odofin, Lagos Nigeria' },
               ].map((c) => (
                 <li key={c.label} className="flex items-start gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
