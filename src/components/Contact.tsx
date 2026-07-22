@@ -47,8 +47,8 @@ export default function Contact() {
 
             <ul className="mt-8 space-y-4">
               {[
-                { icon: Phone, label: 'Call us', value: '+234 800 555 0142' },
-                { icon: Mail, label: 'Email', value: 'hello@candela.energy' },
+                { icon: Phone, label: 'Call us', value: '+234 806 780 2410' },
+                { icon: Mail, label: 'Email', value: 'michaelonuorah@candelaenergygroup.com' },
                 { icon: MapPin, label: 'HQ', value: '12 Adeola Odeku St, Victoria Island, Lagos' },
               ].map((c) => (
                 <li key={c.label} className="flex items-start gap-3">
