@@ -1,88 +1,69 @@
-import { Zap, Linkedin, Twitter, Github } from 'lucide-react';
+import React, { useState } from 'react';
+import CandelaLogo from './CandelaLogo';
+import AdminLetterhead from './AdminLetterhead';
 
-const cols = [
-  {
-    title: 'Solutions',
-    links: ['Residential Solar', 'Battery Storage', 'Commercial Plans', 'Smart Analytics'],
-  },
-  {
-    title: 'Company',
-    links: ['About', 'Careers', 'Press', 'Sustainability'],
-  },
-  {
-    title: 'Support',
-    links: ['Help Center', 'Contact', 'Outage Map', 'Account Login'],
-  },
-];
+export const Footer: React.FC = () => {
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
 
-export default function Footer() {
   return (
-    <footer className="bg-slatey-950 text-slatey-300">
-      <div className="container-px py-14">
-        <div className="grid gap-10 lg:grid-cols-[1.5fr_2fr]">
-          <div>
-            <a href="#top" className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white">
-                <Zap className="h-5 w-5" strokeWidth={2.5} />
-              </span>
-              <span className="font-display text-lg font-bold text-white">
-                Candela<span className="text-brand-400"> Energy</span>
-                <span className="ml-1 text-[11px] font-semibold text-slatey-500">
-                  Nigeria Ltd.
-                </span>
-              </span>
-            </a>
-            <p className="mt-4 max-w-sm text-sm text-slatey-400">
-              Smarter power, bigger savings. Clean energy plans for homes and
-              businesses across the country.
+    <footer className="bg-slate-950 border-t border-slate-800 text-slate-400 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Top Grid Area */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
+          <div className="md:col-span-2 space-y-4">
+            <CandelaLogo className="h-8" lightText={true} />
+            <p className="text-xs text-slate-400 max-w-sm leading-relaxed">
+              Monetising stranded gas flares and delivering scalable, hybrid energy solutions across sub-Saharan Africa.
             </p>
-            <div className="mt-5 flex gap-3">
-              {[Linkedin, Twitter, Github].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-slatey-800 text-slatey-300 transition-colors hover:bg-brand-600 hover:text-white"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-            {cols.map((c) => (
-              <div key={c.title}>
-                <h4 className="font-display text-sm font-bold text-white">
-                  {c.title}
-                </h4>
-                <ul className="mt-4 space-y-2.5">
-                  {c.links.map((l) => (
-                    <li key={l}>
-                      <a
-                        href="#"
-                        className="text-sm text-slatey-400 transition-colors hover:text-brand-400"
-                      >
-                        {l}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-3">Solutions</h4>
+            <ul className="space-y-2 text-xs">
+              <li><a href="#services" className="hover:text-emerald-400 transition-colors">Gas Monetisation</a></li>
+              <li><a href="#services" className="hover:text-emerald-400 transition-colors">Hybrid Power Systems</a></li>
+              <li><a href="#services" className="hover:text-emerald-400 transition-colors">Automated Telemetry</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-3">Company</h4>
+            <ul className="space-y-2 text-xs">
+              <li><a href="#story" className="hover:text-emerald-400 transition-colors">Our Story</a></li>
+              <li><a href="#insights" className="hover:text-emerald-400 transition-colors">Insights Blog</a></li>
+              <li><a href="#contact" className="hover:text-emerald-400 transition-colors">Contact</a></li>
+            </ul>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slatey-800 pt-6 sm:flex-row">
-          <p className="text-xs text-slatey-500">
-            © {new Date().getFullYear()} Candela Energy Group Nigeria Limited. All rights reserved.
-          </p>
-          <div className="flex gap-5 text-xs text-slatey-500">
-            <a href="#" className="transition-colors hover:text-brand-400">Privacy</a>
-            <a href="#" className="transition-colors hover:text-brand-400">Terms</a>
-            <a href="#" className="transition-colors hover:text-brand-400">Regulatory</a>
+        {/* Bottom Copyright Bar with Hidden 'CE' Admin Trigger */}
+        <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+          <div className="flex items-center gap-2">
+            <span>© 2026 Candela Energy Group Nigeria Limited. All Rights Reserved.</span>
+            
+            {/* Secret CE Admin Portal Trigger Link */}
+            <button
+              onClick={() => setIsAdminOpen(true)}
+              className="text-[10px] text-slate-600 hover:text-emerald-400 transition-colors font-mono px-1.5 py-0.5 rounded select-none border border-slate-800/50"
+              title="Portal"
+            >
+              CE
+            </button>
+          </div>
+
+          <div className="flex gap-6 text-slate-500 text-xs">
+            <span>Privacy Policy</span>
+            <span>Terms of Service</span>
           </div>
         </div>
+
       </div>
+
+      {/* Admin Passcode Modal Component */}
+      <AdminLetterhead isOpen={isAdminOpen} onClose={() => setIsAdminOpen(false)} />
     </footer>
   );
-}
+};
+
+export default Footer;
