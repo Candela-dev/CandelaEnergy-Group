@@ -1,63 +1,30 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import { AuthProvider } from './context/AuthContext';
-import { ServicesCategories } from './components/ServicesCategories';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import ProtectedRoute from './components/ProtectedRoute';
+import React from 'react';
+import { Navbar } from './components/Navbar';
+import { Hero } from './components/Hero';
+import { OurStory } from './components/OurStory';
+import { Services } from './components/Services';
+import { Insights } from './components/Insights';
+import { Contact } from './components/Contact';
+import { Footer } from './components/Footer';
 
-function ScrollToHash() {
-  const { hash, pathname } = useLocation();
-  useEffect(() => {
-    if (hash) {
-      const el = document.querySelector(hash);
-      if (el) {
-        setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 50);
-        return;
-      }
-    }
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-  }, [hash, pathname]);
-  return null;
-}
-
-export function App() {
+function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <ScrollToHash />
-        <div className="min-h-screen bg-white flex flex-col justify-between">
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              {/* Wrapped together inside element so ServicesCategories displays right under Home */}
-              <Route
-                path="/"
-                element={
-                  <>
-                    <Home />
-                    <ServicesCategories />
-                  </>
-                }
-              />
-              <Route path="/login" element={<Login />} />
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </AuthProvider>
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-white">
+      {/* Top Navigation */}
+      <Navbar />
+
+      {/* Main Landing Sections */}
+      <main>
+        <Hero />
+        <OurStory />
+        <Services />
+        <Insights />
+        <Contact />
+      </main>
+
+      {/* Footer */}
+      <Footer />
+    </div>
   );
 }
 
