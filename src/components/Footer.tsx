@@ -5,6 +5,9 @@ import AdminLetterhead from './AdminLetterhead';
 export const Footer: React.FC = () => {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
 
+  // Updated with client's official RC Number
+  const RC_NUMBER = "RC 1234650"; 
+
   return (
     <footer className="bg-slate-950 border-t border-slate-800 text-slate-400 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,10 +40,12 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Copyright Bar with Hidden 'CE' Admin Trigger */}
+        {/* Bottom Bar: Copyright, TechArchitect Credit & Secret Admin Trigger */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
-          <div className="flex items-center gap-2">
-            <span>© 2026 Candela Energy Group Nigeria Limited. All Rights Reserved.</span>
+          
+          {/* Company Legal Info + RC Number */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <span>© 2026 Candela Energy Group Nigeria Limited ({RC_NUMBER}). All Rights Reserved.</span>
             
             {/* Secret CE Admin Portal Trigger Link */}
             <button
@@ -52,10 +57,19 @@ export const Footer: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex gap-6 text-slate-500 text-xs">
-            <span>Privacy Policy</span>
-            <span>Terms of Service</span>
+          {/* Agency Credit: Powered by TechArchitect */}
+          <div className="flex items-center gap-1.5 text-slate-500">
+            <span>Powered by</span>
+            <a
+              href="https://techarc.icu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-slate-300 hover:text-emerald-400 transition-colors underline decoration-emerald-500/40 underline-offset-4"
+            >
+              TechArchitect
+            </a>
           </div>
+
         </div>
 
       </div>
