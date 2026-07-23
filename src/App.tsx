@@ -1,11 +1,11 @@
 import React from 'react';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { OurStory } from './components/OurStory';
-import { Services } from './components/Services';
-import { Insights } from './components/Insights';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
+import Navbar  from './components/Navbar';
+import Hero from './components/Hero';
+import OurStory  from './components/OurStory';
+import Services  from './components/Services';
+import Insights  from './components/Insights';
+import Contact from './components/Contact';
+import Footer  from './components/Footer';
 
 function App() {
   return (
