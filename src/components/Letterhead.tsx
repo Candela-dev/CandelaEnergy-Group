@@ -93,16 +93,25 @@ export const Letterhead: React.FC = () => {
         {/* BOTTOM SECTION: SIGNATURE & FOOTER */}
         <div className="relative z-10">
           
-          {/* SIGNATURE AREA (Restored & Blend-Mode Active) */}
+          {/* SIGNATURE AREA (Tuned for the tall photographed signature) */}
           <div className="pt-6 w-64 space-y-1 mb-8">
-            <div className="relative h-16 w-32 border-b-2 border-slate-300 mb-2 flex flex-col justify-end">
+            
+            {/* Increased container height (h-24) so the tall signature isn't squished */}
+            <div className="relative h-24 w-32 border-b-2 border-slate-300 mb-2 flex flex-col justify-end items-center pb-1">
               <div className="absolute inset-0 z-10 pointer-events-none" />
               <img 
-                src="/signature.png" 
+                src="/signature.jpg" /* Make sure this matches your exact file name and extension! */
                 alt="Authorized Signature" 
-                className="max-h-14 object-contain pointer-events-none select-none filter contrast-125 mb-1 mix-blend-multiply"
+                /* 
+                  Magic Filters applied:
+                  - h-22: Allows the tall signature to expand
+                  - brightness-110 & contrast-200: Bleaches the grey paper background to pure white
+                  - mix-blend-multiply: Makes the pure white paper completely invisible
+                */
+                className="h-22 object-contain pointer-events-none select-none mix-blend-multiply filter contrast-200 brightness-110"
               />
             </div>
+
             <p className="font-black text-slate-900 text-sm">Executive Board of Directors</p>
             <p className="text-xs text-slate-500 font-bold">Candela Energy Group</p>
           </div>
