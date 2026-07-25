@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ThoughtLeadership from './pages/ThoughtLeadership';
+import SavingsCalculator from './components/SavingsCalculator';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import OurStory from './components/OurStory';
@@ -26,6 +27,7 @@ function App() {
                   <Hero />
                   <OurStory />
                   <Services />
+                  <SavingsCalculator />
                   <Insights />
                   <Contact />
                 </>
