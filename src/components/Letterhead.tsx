@@ -47,10 +47,10 @@ export const Letterhead: React.FC = () => {
             {/* Corporate Metadata */}
             <div className="text-right text-xs text-slate-600 space-y-1 font-sans">
               <p className="font-bold text-slate-900 text-sm">Candela Energy Group</p>
-              <p>51B Emmanuel Keshi St, Magodo GRA,</p>
-              <p>Phase 2, Lagos, Nigeria</p>
-              <p className="mt-1">
-                <span className="font-semibold">+234 (0) 703 661 5866</span> | <span className="font-semibold">+234 (0) 808 616 9363</span>
+              <p>Plot 3509 Divine Estate,</p>
+              <p>Amuwo Odofin, Lagos, Nigeria</p>
+              <p className="mt-1 font-semibold">
+                +234 (0) 806 780 2410
               </p>
               <p className="text-blue-700 font-medium">info@candelaenergygroup.com | www.candelaenergygroup.com</p>
             </div>
