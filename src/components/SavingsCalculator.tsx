@@ -10,16 +10,14 @@ const propertyRates: Record<PropertyType, { rate: number; savingsPct: number }> 
 };
 
 function currency(n: number) {
-  return n.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  return '₦' + n.toLocaleString('en-US', {
     maximumFractionDigits: 0,
   });
 }
 
 export default function SavingsCalculator() {
   const [property, setProperty] = useState<PropertyType>('residential');
-  const [monthlyBill, setMonthlyBill] = useState(180);
+  const [monthlyBill, setMonthlyBill] = useState(170000);
   const [usage, setUsage] = useState(950);
 
   const result = useMemo(() => {
@@ -34,7 +32,7 @@ export default function SavingsCalculator() {
 
   const reset = () => {
     setProperty('residential');
-    setMonthlyBill(180);
+    setMonthlyBill(170000);
     setUsage(950);
   };
 
@@ -44,13 +42,13 @@ export default function SavingsCalculator() {
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
             <Calculator className="h-3.5 w-3.5" />
-            Utility Savings Calculator
+            Clean Energy Solutions & Energy Analytics
           </span>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-slatey-900 sm:text-4xl">
-            See how much you could save
+            Clean Energy Solutions & Energy Analytics
           </h2>
           <p className="mt-3 text-slatey-600">
-            Adjust your usage to get an instant estimate. No email required.
+            At Candela, we design and deliver intelligent clean energy solutions and advanced energy analytics that help businesses reduce operating costs, improve energy efficiency, and accelerate their sustainability objectives[cite: 1].
           </p>
         </div>
 
@@ -89,10 +87,10 @@ export default function SavingsCalculator() {
               <Slider
                 label="Monthly bill"
                 value={monthlyBill}
-                min={50}
-                max={2000}
-                step={10}
-                suffix="$"
+                min={50000}
+                max={2000000}
+                step={10000}
+                suffix="₦"
                 onChange={setMonthlyBill}
               />
               <Slider
@@ -174,9 +172,9 @@ function Slider({
       <div className="flex items-baseline justify-between">
         <label className="text-sm font-semibold text-slatey-800">{label}</label>
         <span className="font-display text-lg font-bold text-brand-700">
-          {suffix === '$' ? '$' : ''}
+          {suffix === '₦' ? '₦' : ''}
           {value.toLocaleString('en-US')}
-          {suffix === '$' ? '' : suffix}
+          {suffix === '₦' ? '' : suffix}
         </span>
       </div>
       <input
@@ -198,14 +196,14 @@ function Slider({
       />
       <div className="mt-1.5 flex justify-between text-[11px] text-slatey-400">
         <span>
-          {suffix === '$' ? '$' : ''}
+          {suffix === '₦' ? '₦' : ''}
           {min.toLocaleString()}
-          {suffix === '$' ? '' : suffix}
+          {suffix === '₦' ? '' : suffix}
         </span>
         <span>
-          {suffix === '$' ? '$' : ''}
+          {suffix === '₦' ? '₦' : ''}
           {max.toLocaleString()}
-          {suffix === '$' ? '' : suffix}
+          {suffix === '₦' ? '' : suffix}
         </span>
       </div>
     </div>
