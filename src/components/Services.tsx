@@ -1,32 +1,32 @@
 import React from 'react';
-import { Flame, Zap, Activity, ArrowRight } from 'lucide-react';
+import { Activity, Cpu, BarChart3, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Services: React.FC = () => {
   const serviceList = [
     {
-      title: 'Gas Monetisation & Flare Elimination',
-      description: 'Capturing stranded natural gas at the wellhead to generate low-cost, continuous power while eliminating routine flaring emissions.',
-      icon: Flame,
-      challenge: 'Routine gas flaring and high fuel overheads.',
-      impact: 'Up to 40% reduction in operational fuel expenses.',
-      linkText: 'Read Flare Gas Whitepaper'
-    },
-    {
-      title: 'Industrial Hybrid Energy Systems',
-      description: 'Integrating modular gas generators with solar and battery storage for high-uptime power across off-grid industrial facilities.',
-      icon: Zap,
-      challenge: 'Grid unreliability causing costly factory downtime.',
-      impact: '24/7 continuous industrial power supply.',
-      linkText: 'Read Hybrid Energy Whitepaper'
-    },
-    {
-      title: 'Automated Telemetry & Monitoring',
-      description: 'Real-time IoT data collection and remote management for optimized fuel consumption and preventative maintenance.',
+      title: 'Automated Telemetry & Remote Monitoring',
+      description: 'Delivering intelligent telemetry and Industrial Internet of Things (IIoT) solutions that provide secure, real-time visibility into critical energy infrastructure[cite: 1].',
       icon: Activity,
-      challenge: 'Manual operational tracking and fuel theft risks.',
-      impact: '100% automated asset visibility and diagnostics.',
+      challenge: 'Geographically dispersed assets lacking centralized visibility[cite: 1].',
+      impact: 'Continuous data acquisition, remote asset monitoring, and actionable insights[cite: 1].',
       linkText: 'Read Telemetry Whitepaper'
+    },
+    {
+      title: 'End-to-End Grid Metering Solutions',
+      description: 'Comprehensive grid metering solutions enabling utilities and energy stakeholders to improve revenue assurance, network visibility, and NESI compliance[cite: 1].',
+      icon: Cpu,
+      challenge: 'Commercial losses and manual data collection inefficiencies[cite: 1].',
+      impact: 'Advanced Metering Infrastructure (AMI) and secure automated data acquisition[cite: 1].',
+      linkText: 'Read Grid Solutions Overview'
+    },
+    {
+      title: 'Energy Analytics & Digital Dashboards',
+      description: 'Enterprise-grade energy analytics platforms and digital dashboards transforming complex operational data into actionable strategic intelligence[cite: 1].',
+      icon: BarChart3,
+      challenge: 'Siloed data systems and lack of unified operational visibility[cite: 1].',
+      impact: 'Role-based dashboards tracking near real-time operational KPIs and asset health[cite: 1].',
+      linkText: 'Read Energy Analytics Insights'
     },
   ];
 
@@ -43,7 +43,7 @@ export const Services: React.FC = () => {
             Our Core <span className="text-emerald-400">Energy Solutions</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-400">
-            End-to-end power infrastructure engineered to monetize stranded gas and secure industrial resilience.
+            End-to-end power infrastructure engineered to monetize stranded gas and secure industrial resilience[cite: 1].
           </p>
         </div>
 
