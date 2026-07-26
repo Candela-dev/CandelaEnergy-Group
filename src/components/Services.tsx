@@ -1,5 +1,6 @@
 import React from 'react';
-import { Flame, Zap, Activity, ShieldCheck } from 'lucide-react';
+import { Flame, Zap, Activity, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const Services: React.FC = () => {
   const serviceList = [
@@ -8,21 +9,24 @@ export const Services: React.FC = () => {
       description: 'Capturing stranded natural gas at the wellhead to generate low-cost, continuous power while eliminating routine flaring emissions.',
       icon: Flame,
       challenge: 'Routine gas flaring and high fuel overheads.',
-      impact: 'Up to 40% reduction in operational fuel expenses.'
+      impact: 'Up to 40% reduction in operational fuel expenses.',
+      linkText: 'Read Flare Gas Whitepaper'
     },
     {
       title: 'Industrial Hybrid Energy Systems',
       description: 'Integrating modular gas generators with solar and battery storage for high-uptime power across off-grid industrial facilities.',
       icon: Zap,
       challenge: 'Grid unreliability causing costly factory downtime.',
-      impact: '24/7 continuous industrial power supply.'
+      impact: '24/7 continuous industrial power supply.',
+      linkText: 'Read Hybrid Energy Whitepaper'
     },
     {
       title: 'Automated Telemetry & Monitoring',
       description: 'Real-time IoT data collection and remote management for optimized fuel consumption and preventative maintenance.',
       icon: Activity,
       challenge: 'Manual operational tracking and fuel theft risks.',
-      impact: '100% automated asset visibility and diagnostics.'
+      impact: '100% automated asset visibility and diagnostics.',
+      linkText: 'Read Telemetry Whitepaper'
     },
   ];
 
@@ -50,24 +54,37 @@ export const Services: React.FC = () => {
             return (
               <div 
                 key={index} 
-                className="flex flex-col p-6 rounded-2xl bg-slate-800/60 border border-slate-700/60 hover:border-emerald-500/50 transition-all duration-300"
+                className="flex flex-col p-6 rounded-2xl bg-slate-800/60 border border-slate-700/60 hover:border-emerald-500/50 transition-all duration-300 justify-between"
               >
-                <div className="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl w-fit mb-4">
-                  <IconComponent className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed mb-6 flex-1">
-                  {service.description}
-                </p>
+                <div>
+                  <div className="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl w-fit mb-4">
+                    <IconComponent className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-6">
+                    {service.description}
+                  </p>
 
-                {/* Challenge & Impact Details */}
-                <div className="space-y-2 pt-4 border-t border-slate-700/60 text-xs">
-                  <p className="text-slate-300">
-                    <strong className="text-emerald-400">Target:</strong> {service.challenge}
-                  </p>
-                  <p className="text-slate-300">
-                    <strong className="text-emerald-400">Impact:</strong> {service.impact}
-                  </p>
+                  {/* Challenge & Impact Details */}
+                  <div className="space-y-2 py-4 border-t border-slate-700/60 text-xs mb-6">
+                    <p className="text-slate-300">
+                      <strong className="text-emerald-400">Target:</strong> {service.challenge}
+                    </p>
+                    <p className="text-slate-300">
+                      <strong className="text-emerald-400">Impact:</strong> {service.impact}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Read Article Link */}
+                <div className="pt-4 border-t border-slate-700/40">
+                  <Link 
+                    to="/thought-leadership" 
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors group"
+                  >
+                    {service.linkText} 
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </div>
             );
