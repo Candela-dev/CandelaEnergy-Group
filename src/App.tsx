@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ThoughtLeadership from './pages/ThoughtLeadership';
+import Letterhead from './components/Letterhead';
 import SavingsCalculator from './components/SavingsCalculator';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -34,6 +35,7 @@ function App() {
               } 
             />
             <Route path="/thought-leadership" element={<ThoughtLeadership />} />
+            <Route path="/letterhead" element={<Letterhead />} />
           </Routes>
         </main>
 

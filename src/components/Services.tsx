@@ -6,26 +6,26 @@ export const Services: React.FC = () => {
   const serviceList = [
     {
       title: 'Automated Telemetry & Remote Monitoring',
-      description: 'Delivering intelligent telemetry and Industrial Internet of Things (IIoT) solutions that provide secure, real-time visibility into critical energy infrastructure[cite: 1].',
+      description: 'Delivering intelligent telemetry and Industrial Internet of Things (IIoT) solutions that provide secure, real-time visibility into critical energy infrastructure.',
       icon: Activity,
-      challenge: 'Geographically dispersed assets lacking centralized visibility[cite: 1].',
-      impact: 'Continuous data acquisition, remote asset monitoring, and actionable insights[cite: 1].',
+      challenge: 'Geographically dispersed assets lacking centralized visibility.',
+      impact: 'Continuous data acquisition, remote asset monitoring, and actionable insights.',
       linkText: 'Read Telemetry Whitepaper'
     },
     {
       title: 'End-to-End Grid Metering Solutions',
-      description: 'Comprehensive grid metering solutions enabling utilities and energy stakeholders to improve revenue assurance, network visibility, and NESI compliance[cite: 1].',
+      description: 'Comprehensive grid metering solutions enabling utilities and energy stakeholders to improve revenue assurance, network visibility, and NESI compliance.',
       icon: Cpu,
-      challenge: 'Commercial losses and manual data collection inefficiencies[cite: 1].',
-      impact: 'Advanced Metering Infrastructure (AMI) and secure automated data acquisition[cite: 1].',
+      challenge: 'Commercial losses and manual data collection inefficiencies.',
+      impact: 'Advanced Metering Infrastructure (AMI) and secure automated data acquisition.',
       linkText: 'Read Grid Solutions Overview'
     },
     {
       title: 'Energy Analytics & Digital Dashboards',
-      description: 'Enterprise-grade energy analytics platforms and digital dashboards transforming complex operational data into actionable strategic intelligence[cite: 1].',
+      description: 'Enterprise-grade energy analytics platforms and digital dashboards transforming complex operational data into actionable strategic intelligence.',
       icon: BarChart3,
-      challenge: 'Siloed data systems and lack of unified operational visibility[cite: 1].',
-      impact: 'Role-based dashboards tracking near real-time operational KPIs and asset health[cite: 1].',
+      challenge: 'Siloed data systems and lack of unified operational visibility.',
+      impact: 'Role-based dashboards tracking near real-time operational KPIs and asset health.',
       linkText: 'Read Energy Analytics Insights'
     },
   ];
@@ -43,7 +43,7 @@ export const Services: React.FC = () => {
             Our Core <span className="text-emerald-400">Energy Solutions</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-400">
-            End-to-end power infrastructure engineered to monetize stranded gas and secure industrial resilience[cite: 1].
+            End-to-end power infrastructure engineered to monetize stranded gas and secure industrial resilience.
           </p>
         </div>
 

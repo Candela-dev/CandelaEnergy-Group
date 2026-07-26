@@ -48,7 +48,7 @@ export default function SavingsCalculator() {
             Clean Energy Solutions & Energy Analytics
           </h2>
           <p className="mt-3 text-slatey-600">
-            At Candela, we design and deliver intelligent clean energy solutions and advanced energy analytics that help businesses reduce operating costs, improve energy efficiency, and accelerate their sustainability objectives[cite: 1].
+            At Candela, we design and deliver intelligent clean energy solutions and advanced energy analytics that help businesses reduce operating costs, improve energy efficiency, and accelerate their sustainability objectives.
           </p>
         </div>
 
