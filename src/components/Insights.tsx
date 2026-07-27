@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import flareImg from '../assets/flare-gas-facility.jpg';
 import telemetryImg from '../assets/telemetry-derm.jpg';
+import downstreamImg from '../assets/downstream-petroleum.jpg';
 
 export const Insights: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ export const Insights: React.FC = () => {
         
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-            Candela Research & Publications
+            Candela Energy Research & Publications
           </span>
           <h2 className="text-3xl sm:text-4xl font-black mt-4 uppercase tracking-tight">
             Thought Leadership Whitepapers
@@ -75,12 +76,13 @@ export const Insights: React.FC = () => {
 
           {/* Card 3: Downstream Petroleum */}
           <div className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden flex flex-col group hover:border-emerald-500/50 transition-all">
-            <div className="h-48 overflow-hidden relative bg-slate-900 flex flex-col items-center justify-center p-6 text-center border-b border-slate-800">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-2 border border-emerald-500/20">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <span className="text-xs font-bold text-white tracking-wide">Downstream Infrastructure</span>
-              <span className="text-[10px] text-slate-400 mt-0.5">Pipelines, CNG & Terminal Storage</span>
+            <div className="h-48 overflow-hidden relative">
+              <img 
+                src={downstreamImg} 
+                alt="Downstream Petroleum Infrastructure" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
             </div>
             <div className="p-6 flex flex-col flex-grow">
               <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Whitepaper 03</span>

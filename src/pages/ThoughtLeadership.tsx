@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import flareImg from '../assets/flare-gas-facility.jpg';
 import telemetryImg from '../assets/telemetry-derm.jpg';
+import downstreamImg from '../assets/downstream-petroleum.jpg';
 
 export const ThoughtLeadership: React.FC = () => {
   const location = useLocation();
@@ -96,7 +97,7 @@ export const ThoughtLeadership: React.FC = () => {
           {activeArticle === 1 && (
             <div className="space-y-6">
               <div className="border-b border-slate-200 pb-6">
-                <span className="text-xs font-bold text-orange-600 uppercase tracking-widest">Candela Energy Research Group</span>
+                <span className="text-xs font-bold text-orange-600 uppercase tracking-widest">Candela Energy Limited Research Group</span>
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
                   Monetizing Flare Gas: A Path to Energy Resilience in West Africa
                 </h2>
@@ -134,7 +135,7 @@ export const ThoughtLeadership: React.FC = () => {
           {activeArticle === 2 && (
             <div className="space-y-6">
               <div className="border-b border-slate-200 pb-6">
-                <span className="text-xs font-bold text-blue-600 uppercase tracking-widest">Candela Energy Research Group</span>
+                <span className="text-xs font-bold text-blue-600 uppercase tracking-widest">Candela Energy Limited Research Group</span>
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
                   Automated Telemetry in Off-Grid Hybrid Energy Distribution
                 </h2>
@@ -172,7 +173,7 @@ export const ThoughtLeadership: React.FC = () => {
           {activeArticle === 3 && (
             <div className="space-y-6">
               <div className="border-b border-slate-200 pb-6">
-                <span className="text-xs font-bold text-emerald-600 uppercase tracking-widest">Candela Energy Research Group</span>
+                <span className="text-xs font-bold text-emerald-600 uppercase tracking-widest">Candela Energy Limited Research Group</span>
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
                   Downstream Petroleum Advisory & Project Delivery
                 </h2>
@@ -187,29 +188,26 @@ export const ThoughtLeadership: React.FC = () => {
                   Candela Energy Limited provides strategic advisory, project management, and technical consulting services across the downstream petroleum sector. We partner with investors, developers, marketers, and energy companies to transform opportunities into commercially successful, operationally resilient, and sustainable assets.
                 </p>
 
-                <div className="my-8 rounded-xl overflow-hidden border border-slate-200 shadow-md bg-slate-900 text-white p-8">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="h-3 w-3 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">Downstream & Pipeline Architecture</span>
-                  </div>
-                  <h4 className="text-lg font-bold text-white">Strategic Petroleum Storage & Transmission Networks</h4>
-                  <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-                    Engineering retail fuel networks, CNG mother compression stations, and large-scale bulk storage tank farms across West Africa.
-                  </p>
-                  <div className="mt-4 pt-4 border-t border-slate-800 flex justify-between text-[11px] text-slate-400 font-semibold">
-                    <span>Compliance: NOGICD</span>
+                <div className="my-8 rounded-xl overflow-hidden border border-slate-200 shadow-md">
+                  <img 
+                    src={downstreamImg} 
+                    alt="Downstream Petroleum Infrastructure" 
+                    className="w-full h-auto object-cover max-h-[450px]"
+                  />
+                  <div className="p-4 bg-slate-900 text-white flex flex-wrap justify-between items-center text-[11px] font-semibold border-t border-slate-800">
+                    <span className="text-emerald-400">Compliance: NOGICD</span>
                     <span>Standard: ISO 9001</span>
-                    <span>Governance: RC 1234650</span>
+                    <span className="text-slate-400">Governance: RC 1234650</span>
                   </div>
-                  <p className="text-center text-xs text-slate-400 pt-3 italic">
-                    Figure 3.1: Downstream petroleum storage and distribution infrastructure in West Africa.
+                  <p className="text-center text-xs text-slate-500 py-2 bg-slate-50 italic">
+                    Figure 3.1: Downstream petroleum storage tank farms and distribution infrastructure in West Africa.
                   </p>
                 </div>
 
                 <h3 className="text-lg font-bold text-slate-900">Key Capabilities & Infrastructure Scope</h3>
                 <ul className="list-disc pl-5 space-y-2">
-                  <li><strong>Retail Fuel Station Development:</strong> End-to-end site design, compliance, and execution.</li>
-                  <li><strong>Non-Fuel Revenue (NFR) Strategy:</strong> Business development and retail diversification models.</li>
+                  <li><strong>Retail Fuel Station Development:</strong> End-to-end site design, regulatory compliance, and construction execution.</li>
+                  <li><strong>Non-Fuel Revenue (NFR) Strategy:</strong> Business development and retail diversification models for downstream sites.</li>
                   <li><strong>Compressed Natural Gas (CNG) Mother Station Development:</strong> High-capacity compression and dispensing facilities.</li>
                 </ul>
               </div>
