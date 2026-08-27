@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, Cpu, BarChart3, ArrowRight } from 'lucide-react';
+import { Activity, Cpu, BarChart3, Factory, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Services: React.FC = () => {
@@ -10,7 +10,8 @@ export const Services: React.FC = () => {
       icon: Activity,
       challenge: 'Geographically dispersed assets lacking centralized visibility.',
       impact: 'Continuous data acquisition, remote asset monitoring, and actionable insights.',
-      linkText: 'Read Telemetry Whitepaper'
+      linkText: 'Read Telemetry Whitepaper',
+      link: '/services/telemetry'
     },
     {
       title: 'End-to-End Grid Metering Solutions',
@@ -18,7 +19,8 @@ export const Services: React.FC = () => {
       icon: Cpu,
       challenge: 'Commercial losses and manual data collection inefficiencies.',
       impact: 'Advanced Metering Infrastructure (AMI) and secure automated data acquisition.',
-      linkText: 'Read Grid Solutions Overview'
+      linkText: 'Read Grid Solutions Overview',
+      link: '/services/grid-metering'
     },
     {
       title: 'Energy Analytics & Digital Dashboards',
@@ -26,8 +28,18 @@ export const Services: React.FC = () => {
       icon: BarChart3,
       challenge: 'Siloed data systems and lack of unified operational visibility.',
       impact: 'Role-based dashboards tracking near real-time operational KPIs and asset health.',
-      linkText: 'Read Energy Analytics Insights'
+      linkText: 'Read Energy Analytics Insights',
+      link: '/services/analytics'
     },
+    {
+      title: 'Downstream Petroleum Advisory & Project Delivery',
+      description: 'Strategic advisory, project management, and technical consulting services across the downstream petroleum sector to transform opportunities into sustainable assets.',
+      icon: Factory,
+      challenge: 'Investors, developers, marketers, and energy companies.',
+      impact: 'Accelerated project delivery, optimized capital investments, and maximized long-term asset value.',
+      linkText: 'Read Petroleum Advisory Insights',
+      link: '/services/downstream-petroleum'
+    }
   ];
 
   return (
@@ -47,8 +59,8 @@ export const Services: React.FC = () => {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Services Grid - Updated to md:grid-cols-2 to create a balanced 2x2 layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {serviceList.map((service, index) => {
             const IconComponent = service.icon;
             return (
@@ -76,10 +88,10 @@ export const Services: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Read Article Link */}
+                {/* Read Article Link - Updated to use dynamic routing */}
                 <div className="pt-4 border-t border-slate-700/40">
                   <Link 
-                    to="/thought-leadership" 
+                    to={service.link} 
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors group"
                   >
                     {service.linkText} 
