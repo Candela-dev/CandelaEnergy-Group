@@ -1,12 +1,13 @@
 import React from 'react';
 import { User } from 'lucide-react';
+import ceoImg from '../assets/ceophoto.png';
 
 export const Leadership: React.FC = () => {
   const ceo = {
     name: 'Michael Onuorah',
     title: 'Chief Executive Officer',
     subtitle: 'Strategy, Corporate Development & Energy Infrastructure',
-    image: '/images/ceophoto.png', 
+    image: ceoImg, // Use the imported variable here, not a string
     bio: "Michael Onuorah is a senior energy-sector executive with over 19 years of professional experience spanning power infrastructure, electricity metering, digital energy, oil & gas, corporate development, project execution, business strategy and emerging energy markets.",
     expertise: [
       'Energy Strategy & Corporate Development', 
