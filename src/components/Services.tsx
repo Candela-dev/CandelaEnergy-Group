@@ -1,9 +1,27 @@
 import React from 'react';
-import { Activity, Cpu, BarChart3, Factory, ArrowRight } from 'lucide-react';
+import { Activity, Cpu, BarChart3, Factory, Zap, Droplets, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Services: React.FC = () => {
   const serviceList = [
+    {
+      title: 'Gas & Power Infrastructure',
+      description: 'Development, project management, and operational delivery of gas and power infrastructure assets from opportunity maturation through to FID.',
+      icon: Zap,
+      challenge: 'High capital requirements, complex regulatory environments, and execution risks.',
+      impact: 'Commercially viable, operationally resilient, and rapidly deployed energy assets.',
+      linkText: 'Read Infrastructure Overview',
+      link: '/services/gas-power-infrastructure'
+    },
+    {
+      title: 'Upstream Petroleum Services',
+      description: 'Digital monitoring, intelligent inspection, digital twin 3D asset modeling, and end-to-end engineering consultancy for onshore/offshore assets.',
+      icon: Droplets,
+      challenge: 'Harsh operating environments, aging infrastructure, and high maintenance costs.',
+      impact: 'Enhanced asset integrity, reduced downtime, and improved operational safety.',
+      linkText: 'Read Upstream Solutions',
+      link: '/services/upstream-petroleum'
+    },
     {
       title: 'Automated Telemetry & Remote Monitoring',
       description: 'Delivering intelligent telemetry and Industrial Internet of Things (IIoT) solutions that provide secure, real-time visibility into critical energy infrastructure.',
@@ -59,8 +77,8 @@ export const Services: React.FC = () => {
           </p>
         </div>
 
-        {/* Services Grid - Updated to md:grid-cols-2 to create a balanced 2x2 layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Services Grid - Now a 3x2 grid on large screens to accommodate 6 cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceList.map((service, index) => {
             const IconComponent = service.icon;
             return (
