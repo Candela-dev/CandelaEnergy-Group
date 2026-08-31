@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="space-y-4 md:col-span-1">
             <CandelaLogo className="h-8" lightText={true} />
             <p className="text-xs leading-relaxed text-slate-400">
-              Candela Energy Group (RC 1234650) delivers advanced gas monetisation, hybrid telemetry, and downstream energy infrastructure across West Africa.
+              Candela Energy Limited (RC 1234650) delivers advanced gas monetisation, hybrid telemetry, and downstream energy infrastructure across West Africa.
             </p>
             <p className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">
               NOGICD Compliant
@@ -78,7 +78,7 @@ export default function Footer() {
         {/* Bottom Bar with CE Executive Gateway */}
         <div className="pt-8 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
           <div className="flex items-center gap-3">
-            <p>© {new Date().getFullYear()} Candela Energy Group (RC 1234650). All Rights Reserved.</p>
+            <p>© {new Date().getFullYear()} Candela Energy Limited (RC 1234650). All Rights Reserved.</p>
             {/* Secure Executive Gateway Trigger */}
             <Link 
               to="/letterhead" 

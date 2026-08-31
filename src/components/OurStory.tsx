@@ -37,7 +37,7 @@ export const OurStory: React.FC = () => {
           {/* Column 1: Narrative & Mission */}
           <div className="space-y-6 text-slate-300 text-sm sm:text-base leading-relaxed">
             <p>
-              <strong className="text-white">Candela Energy Group</strong> was established with a singular objective: to turn environmental liabilities into sustainable power assets. For decades, routine gas flaring and unyielding grid instability have hampered industrial growth across West Africa.
+              <strong className="text-white">Candela Energy Limited (RC 1234650)</strong> was established with a singular objective: to turn environmental liabilities into sustainable power assets. For decades, routine gas flaring and unyielding grid instability have hampered industrial growth across West Africa.
             </p>
 
             <p>

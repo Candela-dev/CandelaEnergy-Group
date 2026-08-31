@@ -30,7 +30,7 @@ export const Hero: React.FC = () => {
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-            At Candela Energy Group, we design and deliver intelligent clean energy solutions, advanced gas monetization, and real-time telemetry systems that help industrial operators reduce overhead and accelerate sustainability targets.
+            At Candela Energy Limited (RC 1234650) , we design and deliver intelligent clean energy solutions, advanced gas monetization, and real-time telemetry systems that help industrial operators reduce overhead and accelerate sustainability targets.
           </p>
 
           <div className="my-8 p-4 rounded-2xl bg-slate-900/90 border border-slate-800 backdrop-blur-md flex flex-wrap justify-around items-center gap-4 text-center">
