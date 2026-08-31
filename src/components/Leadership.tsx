@@ -6,9 +6,9 @@ export const Leadership: React.FC = () => {
     name: 'Michael Onuorah',
     title: 'Chief Executive Officer',
     subtitle: 'Strategy, Corporate Development & Energy Infrastructure',
-    image: '/images/ceo.jpg', // Replace with actual image path
-    bio: "Michael Onuorah is a senior energy-sector executive with over 19 years of professional experience spanning power infrastructure, electricity metering, digital energy, oil & gas, corporate development, project execution, business strategy and emerging energy markets. His career combines strategic leadership with hands-on experience in transforming complex energy-sector opportunities into commercially viable businesses, infrastructure projects and technology-enabled solutions. Over the past 14+ years, Michael has focused extensively on corporate development, business development and project execution, leading multidisciplinary teams responsible for opportunity identification, maturation, structuring and delivery of energy projects through to Final Investment Decision (FID).",
-    expertise: ['Energy Strategy & Corporate Development', 'Power Infrastructure Development', 'Electricity Metering & Revenue Assurance', 'Digital Energy & Energy Technology', 'IIoT, OT & Energy Data Platforms', 'Business & Product Development']
+    image: '/images/ceophoto.png', 
+    bio: "Michael Onuorah is a senior energy-sector executive...",
+    // ...
   };
 
   const directors = [
