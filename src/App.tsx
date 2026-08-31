@@ -1,21 +1,30 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ThoughtLeadership from './pages/ThoughtLeadership';
-import Letterhead from './components/Letterhead';
-import SavingsCalculator from './components/SavingsCalculator';
+
+// Global Layout Components
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import OurStory from './components/OurStory';
-import Services from './components/Services';
-import Insights from './components/Insights';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-// Import the new dedicated service pages
+// Homepage Components
+import Hero from './components/Hero';
+import MissionVision from './components/MissionVision';
+import OurStory from './components/OurStory';
+import Leadership from './components/Leadership';
+import Services from './components/Services';
+import Partners from './components/Partners';
+import SavingsCalculator from './components/SavingsCalculator';
+import Insights from './components/Insights';
+import Contact from './components/Contact';
+
+// Dedicated Pages
+import ThoughtLeadership from './pages/ThoughtLeadership';
+import Letterhead from './components/Letterhead';
 import Telemetry from './pages/Telemetry';
 import GridMetering from './pages/GridMetering';
 import EnergyAnalytics from './pages/EnergyAnalytics';
 import DownstreamPetroleum from './pages/DownstreamPetroleum';
+import GasPowerInfrastructure from './pages/GasPowerInfrastructure';
+import UpstreamPetroleum from './pages/UpstreamPetroleum';
 
 function App() {
   return (
@@ -27,23 +36,31 @@ function App() {
         {/* Main Content Routed */}
         <main className="flex-grow">
           <Routes>
+            {/* The Homepage Narrative Flow */}
             <Route 
               path="/" 
               element={
                 <>
                   <Hero />
+                  <MissionVision />
                   <OurStory />
+                  <Leadership />
                   <Services />
+                  <Partners />
                   <SavingsCalculator />
                   <Insights />
                   <Contact />
                 </>
               } 
             />
+            
+            {/* Utility & Content Pages */}
             <Route path="/thought-leadership" element={<ThoughtLeadership />} />
             <Route path="/letterhead" element={<Letterhead />} />
             
-            {/* New Service Detail Routes */}
+            {/* Core Service Detail Routes */}
+            <Route path="/services/gas-power-infrastructure" element={<GasPowerInfrastructure />} />
+            <Route path="/services/upstream-petroleum" element={<UpstreamPetroleum />} />
             <Route path="/services/telemetry" element={<Telemetry />} />
             <Route path="/services/grid-metering" element={<GridMetering />} />
             <Route path="/services/analytics" element={<EnergyAnalytics />} />
