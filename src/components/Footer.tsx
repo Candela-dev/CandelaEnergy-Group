@@ -93,7 +93,7 @@ export default function Footer() {
           <div className="text-slate-500">
             Powered by{' '}
             <a 
-              href="https://www.techarch.icu" 
+              href="https://www.techarc.icu" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors"
