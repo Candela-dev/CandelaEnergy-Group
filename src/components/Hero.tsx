@@ -35,11 +35,6 @@ export const Hero: React.FC = () => {
 
           <div className="my-8 p-4 rounded-2xl bg-slate-900/90 border border-slate-800 backdrop-blur-md flex flex-wrap justify-around items-center gap-4 text-center">
             <div>
-              <p className="text-2xl sm:text-3xl font-black text-emerald-400">₦17M+</p>
-              <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold mt-0.5">Projected Baseline Impact</p>
-            </div>
-            <div className="h-8 w-px bg-slate-800 hidden sm:block" />
-            <div>
               <p className="text-2xl sm:text-3xl font-black text-blue-400">99.9%</p>
               <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold mt-0.5">System Availability</p>
             </div>
