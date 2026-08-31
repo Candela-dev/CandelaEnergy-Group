@@ -7,7 +7,7 @@ export const Leadership: React.FC = () => {
     name: 'Michael Onuorah',
     title: 'Chief Executive Officer',
     subtitle: 'Strategy, Corporate Development & Energy Infrastructure',
-    image: ceoImg, // Use the imported variable here, not a string
+    image: ceoImg,
     bio: "Michael Onuorah is a senior energy-sector executive with over 19 years of professional experience spanning power infrastructure, electricity metering, digital energy, oil & gas, corporate development, project execution, business strategy and emerging energy markets.",
     expertise: [
       'Energy Strategy & Corporate Development', 
@@ -76,7 +76,7 @@ export const Leadership: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3">
             <div className="h-64 lg:h-auto bg-slate-800 relative flex items-center justify-center">
               {ceo.image ? (
-                <img src={ceo.image} alt={ceo.name} className="absolute inset-0 w-full h-full object-cover" />
+                <img src={ceo.image} alt={ceo.name} className="absolute inset-0 w-full h-full object-cover object-top" />
               ) : (
                 <User className="w-24 h-24 text-slate-600" />
               )}
