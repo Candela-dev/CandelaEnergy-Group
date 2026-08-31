@@ -61,7 +61,7 @@ export const Services: React.FC = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-slate-900 text-slate-100 border-t border-slate-800">
+    <section id="services" className="py-20 scroll-mt-24 bg-slate-900 text-slate-100 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
@@ -106,7 +106,7 @@ export const Services: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Read Article Link - Updated to use dynamic routing */}
+                {/* Read Article Link */}
                 <div className="pt-4 border-t border-slate-700/40">
                   <Link 
                     to={service.link} 
