@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Global Layout Components
+import { ScrollToTop } from './components/ScrollToTop'; // Added import
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -30,6 +31,10 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-white flex flex-col justify-between">
+        
+        {/* Global Scroll Reset */}
+        <ScrollToTop />
+        
         {/* Top Navigation */}
         <Navbar />
 
