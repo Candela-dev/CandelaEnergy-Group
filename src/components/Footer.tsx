@@ -75,8 +75,8 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom Bar with CE Executive Gateway */}
-        <div className="pt-8 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+        {/* Bottom Bar with CE Executive Gateway & TechArch Credit */}
+        <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
           <div className="flex items-center gap-3">
             <p>© {new Date().getFullYear()} Candela Energy Limited (RC 1234650). All Rights Reserved.</p>
             {/* Secure Executive Gateway Trigger */}
@@ -88,8 +88,21 @@ export default function Footer() {
               CE
             </Link>
           </div>
+
+          {/* TechArch Attribution */}
+          <div className="text-slate-500">
+            Powered by{' '}
+            <a 
+              href="https://www.techarch.icu" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors"
+            >
+              TechArch Digital Operations
+            </a>
+          </div>
           
-          <div className="flex gap-4">
+          <div className="hidden lg:flex gap-4">
             <span className="text-blue-500">Gas Monetisation</span>
             <span>•</span>
             <span className="text-orange-500">Automated Telemetry</span>
