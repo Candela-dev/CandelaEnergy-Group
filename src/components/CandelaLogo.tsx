@@ -49,7 +49,7 @@ export const CandelaLogo: React.FC<{ className?: string; layout?: 'horizontal' |
           <span className={lightText ? 'font-light text-slate-300 ml-1' : 'font-light text-slate-700 ml-1'}>ENERGY</span>
         </div>
         <span className={`text-[9px] font-bold tracking-[0.28em] uppercase mt-1 ${lightText ? 'text-slate-400' : 'text-slate-500'}`}>
-          Group Nigeria Limited
+        Nigeria Limited
         </span>
       </div>
     </div>
