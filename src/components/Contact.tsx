@@ -41,15 +41,15 @@ export default function Contact() {
               Let's design your energy plan
             </h2>
             <p className="mt-4 max-w-md text-slatey-600">
-              Tell us about your property and goals. A Candela energy advisor
+              Tell us about your property/ecosystem energy goals. A Candela energy advisor
               will respond within one business day with a tailored quote.
             </p>
 
             <ul className="mt-8 space-y-4">
               {[
                 { icon: Phone, label: 'Call us', value: '+234 806 780 2410' },
-                { icon: Mail, label: 'Email', value: 'michaelonuorah@candelaenergygroup.com' },
-                { icon: MapPin, label: 'HQ', value: 'Plot 3509 Divine Estate , Amuwo Odofin, Lagos Nigeria' },
+                { icon: Mail, label: 'Email', value: 'info@candelaenergygroup.com' },
+                { icon: MapPin, label: 'HQ', value: 'Suite 2, Floor 3, Kings Deck Building By Atlantic Mall, Chevron Drive,Lekki,Lagos' },
               ].map((c) => (
                 <li key={c.label} className="flex items-start gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
