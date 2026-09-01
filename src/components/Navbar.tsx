@@ -20,7 +20,7 @@ export const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
             <a href="/#hero" className="hover:text-emerald-400 transition-colors">Overview</a>
             <a href="/#services" className="hover:text-emerald-400 transition-colors">Services</a>
-            <a href="/#story" className="hover:text-emerald-400 transition-colors">Our Story</a>
+            <a href="/#our-story" className="hover:text-emerald-400 transition-colors">Our Story</a>
             <a href="/#insights" className="hover:text-emerald-400 transition-colors">Insights</a>
             <Link to="/thought-leadership" className="hover:text-emerald-400 transition-colors text-emerald-400 font-semibold">Whitepapers</Link>
             <a 
@@ -61,7 +61,7 @@ export const Navbar: React.FC = () => {
             Services
           </a>
           <a 
-            href="/#story" 
+            href="/#our-story" 
             onClick={() => setIsOpen(false)} 
             className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg"
           >
