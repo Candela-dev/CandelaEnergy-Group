@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Activity } from 'lucide-react';
+import telemetryImg from '../assets/telemetry-derm.jpg';
 
 export const Telemetry: React.FC = () => {
   return (
@@ -25,6 +26,16 @@ export const Telemetry: React.FC = () => {
           <p className="text-lg">
             Candela Energy Limited delivers intelligent telemetry and Industrial Internet of Things (IIoT) solutions that provide secure, real-time visibility into the performance of critical energy infrastructure. Our solutions empower utilities, gas operators, independent power producers (IPPs), and industrial enterprises to monitor, manage, and optimize geographically dispersed assets from a centralized platform.
           </p>
+
+          {/* Telemetry Architecture Diagram with Widescreen Container */}
+          <div className="w-full aspect-video overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-xl my-8">
+            <img 
+              src={telemetryImg} 
+              alt="Automated Telemetry Architecture" 
+              className="w-full h-full object-contain object-center"
+            />
+          </div>
+
           <p>
             By seamlessly integrating field devices, sensors, industrial control systems, and enterprise applications, we enable continuous data acquisition, remote asset monitoring, automated reporting, and actionable operational insights that improve reliability, efficiency, and decision-making.
           </p>
