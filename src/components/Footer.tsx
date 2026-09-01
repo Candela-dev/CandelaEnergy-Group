@@ -38,6 +38,11 @@ export default function Footer() {
                   Site Assessment
                 </Link>
               </li>
+              <li>
+                <Link to="/clients" className="hover:text-emerald-400 transition-colors">
+                  Our Clients
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -57,7 +62,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/thought-leadership?tab=3" className="hover:text-emerald-400 transition-colors">
-                  Downstream Petroleum
+                  NOGICD Compliance
                 </Link>
               </li>
             </ul>

@@ -16,7 +16,7 @@ import Partners from './components/Partners';
 import SavingsCalculator from './components/SavingsCalculator';
 import Insights from './components/Insights';
 import Contact from './components/Contact';
-
+import Clients from './pages/Clients';
 // Dedicated Pages
 import ThoughtLeadership from './pages/ThoughtLeadership';
 import Letterhead from './components/Letterhead';
@@ -70,6 +70,7 @@ function App() {
             <Route path="/services/grid-metering" element={<GridMetering />} />
             <Route path="/services/analytics" element={<EnergyAnalytics />} />
             <Route path="/services/downstream-petroleum" element={<DownstreamPetroleum />} />
+            <Route path="/clients" element={<Clients />} />
           </Routes>
         </main>
 

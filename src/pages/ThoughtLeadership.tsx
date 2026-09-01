@@ -16,8 +16,6 @@ export const ThoughtLeadership: React.FC = () => {
       setActiveArticle(2);
     } else if (tab === '3') {
       setActiveArticle(3);
-    } else if (tab === '4') {
-      setActiveArticle(4);
     } else {
       setActiveArticle(1);
     }
@@ -44,8 +42,8 @@ export const ThoughtLeadership: React.FC = () => {
           </p>
         </div>
 
-        {/* ARTICLE NAVIGATION TABS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        {/* ARTICLE NAVIGATION TABS (Updated to 3 Whitepapers) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
           <button
             onClick={() => { setActiveArticle(1); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
             className={`p-4 rounded-xl text-left transition-all border ${
@@ -76,24 +74,11 @@ export const ThoughtLeadership: React.FC = () => {
             onClick={() => { setActiveArticle(3); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
             className={`p-4 rounded-xl text-left transition-all border ${
               activeArticle === 3
-                ? 'bg-slate-800 border-emerald-500 shadow-lg shadow-emerald-500/10'
-                : 'bg-slate-800/50 border-slate-700 hover:bg-slate-800'
-            }`}
-          >
-            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Whitepaper 03</span>
-            <h3 className="text-sm font-bold text-white mt-1">Downstream Petroleum</h3>
-            <p className="text-xs text-slate-400 mt-1 line-clamp-2">Advisory, Pipeline & Infrastructure Project Delivery.</p>
-          </button>
-
-          <button
-            onClick={() => { setActiveArticle(4); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className={`p-4 rounded-xl text-left transition-all border ${
-              activeArticle === 4
                 ? 'bg-slate-800 border-indigo-500 shadow-lg shadow-indigo-500/10'
                 : 'bg-slate-800/50 border-slate-700 hover:bg-slate-800'
             }`}
           >
-            <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">Whitepaper 04</span>
+            <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">Whitepaper 03</span>
             <h3 className="text-sm font-bold text-white mt-1">NOGICD Compliance</h3>
             <p className="text-xs text-slate-400 mt-1 line-clamp-2">Strategic Advantage for Sustainable Energy Development.</p>
           </button>
@@ -132,7 +117,7 @@ export const ThoughtLeadership: React.FC = () => {
                   Gas flaring represents one of the region's most significant economic and environmental inefficiencies. Every cubic foot of gas flared is a lost opportunity to generate electricity, support industrial development, create jobs, and reduce greenhouse gas emissions. At the same time, businesses continue to rely on expensive diesel generation, undermining competitiveness and slowing economic growth.
                 </p>
                 <p>
-                  Advances in modular gas processing, Industrial Internet of Things (IIoT), and distributed gas-to-power technologies are changing this narrative. Modular gas-to-power infrastructure now enables operators to economically capture stranded flare gas at source, convert it into reliable electricity, and deliver clean, dispatch able power directly to industrial customers, commercial clusters, and underserved communities.
+                  Advances in modular gas processing, Industrial Internet of Things (IIoT), and distributed gas-to-power technologies are changing this narrative. Modular gas-to-power infrastructure now enables operators to economically capture stranded flare gas at source, convert it into reliable electricity, and deliver clean, dispatchable power directly to industrial customers, commercial clusters, and underserved communities.
                 </p>
                 <p>
                   For countries across West Africa, this represents more than an environmental initiative—it is a strategic opportunity to strengthen energy security, improve resource efficiency, accelerate industrialization, and unlock new sources of economic value from existing hydrocarbon assets.
@@ -411,69 +396,8 @@ export const ThoughtLeadership: React.FC = () => {
             </div>
           )}
 
-          {/* ARTICLE 3: DOWNSTREAM PETROLEUM ADVISORY */}
+          {/* ARTICLE 3: NOGICD COMPLIANCE (NOW WHITE-PAPER 03) */}
           {activeArticle === 3 && (
-            <div className="space-y-6">
-              <div className="border-b border-slate-200 pb-6">
-                <span className="text-xs font-bold text-emerald-600 uppercase tracking-widest">Candela Energy Limited Research Group</span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
-                  Downstream Petroleum Advisory & Project Delivery
-                </h2>
-                <p className="text-sm font-medium text-slate-600 mt-2">
-                  Transforming Opportunities into Commercially Successful and Operationally Resilient Assets.
-                </p>
-              </div>
-
-              <div className="prose prose-slate max-w-none text-sm leading-relaxed space-y-4">
-                <h3 className="text-lg font-bold text-slate-900">Strategic Overview</h3>
-                <p>
-                  Candela Energy Limited provides strategic advisory, project management, and technical consulting services across the downstream petroleum sector. We partner with investors, developers, marketers, and energy companies to transform opportunities into commercially successful, operationally resilient, and sustainable assets.
-                </p>
-                <p>
-                  Our integrated approach combines industry expertise, rigorous project governance, and commercial insight to support clients throughout the entire project lifecycle—from opportunity identification and feasibility studies to engineering coordination, project execution, commissioning, and operational readiness.
-                </p>
-                <p>
-                  We help clients accelerate project delivery, optimize capital investments, manage execution risks, and maximize long-term asset value while ensuring compliance with applicable regulatory and industry standards.
-                </p>
-
-                <div className="my-8 rounded-xl overflow-hidden border border-slate-200 shadow-md">
-                  <img 
-                    src={downstreamImg} 
-                    alt="Downstream Petroleum Infrastructure" 
-                    className="w-full h-auto object-cover max-h-[450px]"
-                  />
-                  <div className="p-4 bg-slate-900 text-white flex flex-wrap justify-between items-center text-[11px] font-semibold border-t border-slate-800">
-                    <span className="text-emerald-400">Compliance: NOGICD</span>
-                    <span>Standard: ISO 9001</span>
-                    <span className="text-slate-400">Governance: RC 1234650</span>
-                  </div>
-                  <p className="text-center text-xs text-slate-500 py-2 bg-slate-50 italic">
-                    Figure 3.1: Downstream petroleum storage tank farms and distribution infrastructure in West Africa.
-                  </p>
-                </div>
-
-                <h3 className="text-lg font-bold text-slate-900 mt-8">Our Capabilities</h3>
-                <ul className="list-disc pl-6 space-y-2">
-                  <li>Retail Fuel Station Development</li>
-                  <li>Non-Fuel Revenue (NFR) Strategy and Business Development</li>
-                  <li>Compressed Natural Gas (CNG) Mother Station Development</li>
-                  <li>Natural Gas Pipeline and Distribution Infrastructure</li>
-                  <li>Tank Farm Development and Terminal Operations</li>
-                  <li>Liquefied Petroleum Gas (LPG) Storage and Distribution</li>
-                  <li>Petroleum Products Haulage and Logistics Solutions</li>
-                </ul>
-
-                <div className="mt-8 p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-lg">
-                  <p className="font-semibold text-emerald-800 m-0 text-sm leading-relaxed">
-                    At Candela Energy Limited, we deliver more than projects—we deliver strategic outcomes. By combining technical excellence with commercial discipline, we enable our clients to strengthen operational performance, unlock new revenue opportunities, and build future-ready downstream energy businesses.
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* ARTICLE 4: NOGICD COMPLIANCE */}
-          {activeArticle === 4 && (
             <div className="space-y-6">
               <div className="border-b border-slate-200 pb-6">
                 <span className="text-xs font-bold text-indigo-600 uppercase tracking-widest">Candela Energy Limited Research Group</span>
