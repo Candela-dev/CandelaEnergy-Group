@@ -123,7 +123,7 @@ export const ThoughtLeadership: React.FC = () => {
                   For countries across West Africa, this represents more than an environmental initiative—it is a strategic opportunity to strengthen energy security, improve resource efficiency, accelerate industrialization, and unlock new sources of economic value from existing hydrocarbon assets.
                 </p>
 
-                <div className="my-8 rounded-xl overflow-hidden border border-slate-200 shadow-md">
+                <div className="my-8 rounded-2xl overflow-hidden border border-slate-200 shadow-md">
                   <img 
                     src={flareImg} 
                     alt="Candela Gas Processing Infrastructure" 
@@ -225,13 +225,14 @@ export const ThoughtLeadership: React.FC = () => {
                   At Candela Energy Limited, we believe telemetry is no longer simply a monitoring tool—it is the digital foundation of modern distributed energy infrastructure.
                 </p>
 
-                <div className="my-8 rounded-xl overflow-hidden border border-slate-200 shadow-md">
+                {/* Figure 2.1 DERM Telemetry Architecture with Padded Overflow Box */}
+                <div className="my-8 rounded-2xl overflow-hidden border border-slate-200 bg-slate-950 p-6 sm:p-8 shadow-xl flex flex-col items-center justify-center">
                   <img 
                     src={telemetryImg} 
                     alt="DERM Telemetry Architecture" 
-                    className="w-full h-auto object-cover max-h-[400px]"
+                    className="w-full h-auto max-h-[550px] object-contain rounded-xl"
                   />
-                  <p className="text-center text-xs text-slate-500 py-2 bg-slate-50 italic">
+                  <p className="text-center text-xs text-slate-400 py-3 italic mt-2">
                     Figure 2.1: Distributed Energy Resource Management (DERM) telemetry architecture.
                   </p>
                 </div>
