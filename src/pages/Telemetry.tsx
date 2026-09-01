@@ -27,12 +27,12 @@ export const Telemetry: React.FC = () => {
             Candela Energy Limited delivers intelligent telemetry and Industrial Internet of Things (IIoT) solutions that provide secure, real-time visibility into the performance of critical energy infrastructure. Our solutions empower utilities, gas operators, independent power producers (IPPs), and industrial enterprises to monitor, manage, and optimize geographically dispersed assets from a centralized platform.
           </p>
 
-          {/* Telemetry Architecture Diagram - Figure 2.1 (4:3 Ratio Container) */}
-          <div className="w-full aspect-[4/3] overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-xl my-8">
+          {/* Telemetry Architecture Diagram - Figure 2.1 (Padded Natural Container) */}
+          <div className="w-full rounded-2xl border border-slate-800 bg-slate-950 p-6 sm:p-10 shadow-2xl my-8 flex items-center justify-center">
             <img 
               src={telemetryImg} 
               alt="Figure 2.1: Distributed Energy Resource Management (DERM) telemetry architecture" 
-              className="w-full h-full object-contain object-center"
+              className="w-full h-auto max-h-[650px] object-contain rounded-xl shadow-md"
             />
           </div>
 
