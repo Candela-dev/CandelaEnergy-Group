@@ -24,19 +24,19 @@ export default function Footer() {
             <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">Company</h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <Link to="/#our-story" className="hover:text-emerald-400 transition-colors">
+                <a href="/#our-story" className="hover:text-emerald-400 transition-colors">
                   Our Story
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/#services" className="hover:text-emerald-400 transition-colors">
+                <a href="/#services" className="hover:text-emerald-400 transition-colors">
                   Core Services
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/#contact" className="hover:text-emerald-400 transition-colors">
+                <a href="/#contact" className="hover:text-emerald-400 transition-colors">
                   Site Assessment
-                </Link>
+                </a>
               </li>
               <li>
                 <Link to="/clients" className="hover:text-emerald-400 transition-colors">
