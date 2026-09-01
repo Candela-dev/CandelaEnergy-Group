@@ -113,7 +113,7 @@ export const Letterhead: React.FC = () => {
               </td>
               <td style="vertical-align: top; text-align: right; width: 50%; font-size: 9.5pt; color: #475569; line-height: 1.4;">
                 <p style="font-size: 10pt; font-weight: bold; color: #047857; margin: 0 0 6px 0;">RC 1234650</p>
-                <p style="margin: 0;">Plot 3509 Divine Estate, Amuwo Odofin, Lagos, Nigeria</p>
+                <p style="margin: 0;">Suite 2, Floor 3, Kings Deck Building By Atlantic Mall, Chevron Drive, Lekki, Lagos</p>
                 <p style="margin: 2px 0; font-weight: bold; color: #1e293b;">Phone: +234 (0) 806 780 2410</p>
                 <p style="margin: 0; color: #1d4ed8; font-weight: bold;">info@candelaenergygroup.com | www.candelaenergygroup.com</p>
               </td>
@@ -310,7 +310,7 @@ export const Letterhead: React.FC = () => {
           {/* 1. TOP HEADER ROW: Left (Logo + Typography), Right (RC + Address) */}
           <div className="flex justify-between items-start mb-4">
             
-            {/* LEFT: Logo + Typography (NO tautology, NO middle drift) */}
+            {/* LEFT: Logo + Typography */}
             <div className="flex items-center gap-3">
               <img src={logoImg} alt="Candela Logo" className="h-11 w-auto shrink-0 object-contain" />
               <div className="flex flex-col">
@@ -324,9 +324,9 @@ export const Letterhead: React.FC = () => {
             </div>
 
             {/* RIGHT: Registration & Address */}
-            <div className="text-right text-xs text-slate-600 space-y-1 font-sans">
+            <div className="text-right text-xs text-slate-600 space-y-1 font-sans max-w-[280px]">
               <p className="text-[11px] font-bold text-emerald-700 uppercase tracking-widest mb-1.5">RC 1234650</p>
-              <p>Plot 3509 Divine Estate, Amuwo Odofin, Lagos, Nigeria</p>
+              <p>Suite 2, Floor 3, Kings Deck Building By Atlantic Mall, Chevron Drive, Lekki, Lagos</p>
               <p className="font-semibold text-slate-800">Phone: +234 (0) 806 780 2410</p>
               <p className="text-blue-700 font-medium">info@candelaenergygroup.com | www.candelaenergygroup.com</p>
             </div>

@@ -72,9 +72,11 @@ export default function Footer() {
           <div>
             <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">Headquarters</h4>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Plot 3509 Divine Estate,<br />
-              Amuwo Odofin, Lagos, Nigeria<br />
+              Suite 2, Floor 3, Kings Deck Building<br />
+              By Atlantic Mall, Chevron Drive<br />
+              Lekki, Lagos, Nigeria<br />
               <span className="text-white font-semibold mt-1 block">+234 (0) 806 780 2410</span>
+              <span className="text-emerald-400 font-medium block mt-1">info@candelaenergygroup.com</span>
             </p>
           </div>
 
