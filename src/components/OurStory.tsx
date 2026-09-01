@@ -10,8 +10,8 @@ export const OurStory: React.FC = () => {
   ];
 
   return (
-    <section id="story" className="py-20 bg-slate-900 text-slate-100 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="our-story" className="py-20 bg-slate-900 text-slate-100 border-t border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Badge */}
         <div className="flex justify-center">
