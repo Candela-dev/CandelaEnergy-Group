@@ -48,25 +48,25 @@ export const Hero: React.FC = () => {
                 <ChevronDown className="w-4 h-4 opacity-70 group-hover:rotate-180 transition-transform duration-300" />
               </Link>
               
-              {/* Dropdown Menu */}
+              {/* Dropdown Menu with Candela Color Matrix Hovers */}
               <div className="absolute left-0 top-full mt-2 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-left overflow-hidden">
-                <Link to="/catalogue" className="block px-4 py-3 text-sm text-white hover:bg-slate-800 border-b border-slate-700 font-semibold">
+                <Link to="/catalogue" className="block px-4 py-3 text-sm text-white hover:bg-slate-800 border-b border-slate-700 font-semibold transition-colors">
                   View Entire Catalogue
                 </Link>
-                <Link to="/catalogue#metering" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                  01 / Metering Portfolio
+                <Link to="/catalogue#metering" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-red-600 hover:text-white transition-colors">
+                  Metering Portfolio
                 </Link>
-                <Link to="/catalogue#hes-ami" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                  02 / HES & AMI Architecture
+                <Link to="/catalogue#hes-ami" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-orange-500 hover:text-white transition-colors">
+                  HES & AMI Architecture
                 </Link>
-                <Link to="/catalogue#iiot" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                  03 / Connected Assets & IIoT
+                <Link to="/catalogue#iiot" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-blue-600 hover:text-white transition-colors">
+                  Connected Assets & IIoT
                 </Link>
-                <Link to="/catalogue#vending" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                  04 / Power Share Vending
+                <Link to="/catalogue#vending" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-emerald-600 hover:text-white transition-colors">
+                  Power Share Vending
                 </Link>
-                <Link to="/catalogue#solar" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-                  05 / Distributed Energy & Solar
+                <Link to="/catalogue#solar" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-red-500 hover:text-white transition-colors">
+                  Distributed Energy & Solar
                 </Link>
               </div>
             </div>

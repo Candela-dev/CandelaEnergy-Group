@@ -1,30 +1,28 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { ShieldCheck, Zap, Cpu, Sun, Sparkles } from 'lucide-react'; // Added Sparkles for Naya
+import { ShieldCheck, Zap, Cpu, Sun, Sparkles } from 'lucide-react';
 
 export default function Catalogue() {
   const location = useLocation();
 
-  // Smooth scroll to section if a dropdown link was clicked
   useEffect(() => {
     if (location.hash) {
       const element = document.getElementById(location.hash.substring(1));
       if (element) {
-        // slight delay ensures the page is fully rendered before scrolling
         setTimeout(() => element.scrollIntoView({ behavior: 'smooth' }), 100);
       }
     }
   }, [location]);
 
   const triggerNaya = (productName: string) => {
-    // Dispatches a global event that AiSalesBot listens to
     window.dispatchEvent(new CustomEvent('open-naya', { detail: { product: productName } }));
   };
 
+  // Numbers removed from the title fields below
   const categories = [
     {
       id: "metering",
-      title: "01 / Metering Portfolio",
+      title: "Metering Portfolio",
       desc: "Smart prepay and postpay meters certified by NEMSA for residential, commercial, and industrial boundaries.",
       icon: <Zap className="w-6 h-6 text-red-500" />,
       items: [
@@ -36,7 +34,7 @@ export default function Catalogue() {
     },
     {
       id: "hes-ami",
-      title: "02 / HES & AMI Architecture",
+      title: "HES & AMI Architecture",
       desc: "Central management systems, head-end telemetry, and automated meter reading infrastructure.",
       icon: <Cpu className="w-6 h-6 text-orange-500" />,
       items: [
@@ -46,7 +44,7 @@ export default function Catalogue() {
     },
     {
       id: "iiot",
-      title: "03 / Connected Assets & IIoT",
+      title: "Connected Assets & IIoT",
       desc: "Edge monitoring, telemetry controllers, and industrial data acquisition units.",
       icon: <ShieldCheck className="w-6 h-6 text-blue-500" />,
       items: [
@@ -56,7 +54,7 @@ export default function Catalogue() {
     },
     {
       id: "vending",
-      title: "04 / Power Share Vending",
+      title: "Power Share Vending",
       desc: "Prepaid electricity purchasing portals and automated token delivery for estates and multi-tenant facilities.",
       icon: <Zap className="w-6 h-6 text-red-500" />,
       items: [
@@ -65,7 +63,7 @@ export default function Catalogue() {
     },
     {
       id: "solar",
-      title: "05 / Distributed Energy & Solar",
+      title: "Distributed Energy & Solar",
       desc: "Solar home systems, hybrid inverters, energy storage, and digitally managed mini-grids.",
       icon: <Sun className="w-6 h-6 text-amber-400" />,
       items: [
