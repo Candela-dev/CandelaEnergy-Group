@@ -1,59 +1,131 @@
-import React, { useState, useEffect } from 'react';
-import { MessageSquare, X, Send, PhoneCall, Sparkles, Mail } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { X, Send, PhoneCall, Sparkles, Mail, ChevronRight } from 'lucide-react';
 
 export default function AiSalesBot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { sender: 'bot', text: 'Hello! I am Naya, your virtual power solutions assistant. How can I help you explore our smart meters, transformers, or solar systems today?' }
-  ]);
+  const [chatStage, setChatStage] = useState<'COLLECT' | 'CHAT' | 'HANDOFF'>('COLLECT');
+  
+  // Lead Capture State
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [interest, setInterest] = useState('');
+  
+  // Chat State
+  const [messages, setMessages] = useState<{sender: 'bot'|'user', text: string}[]>([]);
   const [input, setInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const [turnCount, setTurnCount] = useState(0);
+  
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const WHATSAPP_NUMBER = '2348067802410';
   const SALES_EMAIL = 'sales@candelaenergygroup.com';
 
-  // Listen for custom event from Catalogue page to open Naya
+  const productCategories = [
+    "Smart Meters & CIU",
+    "HES & AMI Software",
+    "Telemetry & IIoT",
+    "Power Share Vending",
+    "Distributed Solar & Mini-Grids",
+    "Transformer Services",
+    "General Inquiry"
+  ];
+
+  // Auto-scroll chat
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isTyping, chatStage]);
+
+  // Listen for clicks from the Catalogue page ("Talk to Naya" buttons)
   useEffect(() => {
     const handleOpenNaya = (e: any) => {
       setIsOpen(true);
       if (e.detail?.product) {
-        setInput(`I would like more information about the ${e.detail.product}`);
+        if (chatStage === 'COLLECT') {
+          setInterest(e.detail.product);
+        } else {
+          handleInboundMessage(`I would like more information about the ${e.detail.product}`);
+        }
       }
     };
-    
     window.addEventListener('open-naya', handleOpenNaya);
     return () => window.removeEventListener('open-naya', handleOpenNaya);
-  }, []);
+  }, [chatStage]);
+
+  const handleStartChat = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !email || !interest) return;
+    
+    // 1. Instantly transition to the chat interface
+    setChatStage('CHAT');
+    const firstName = name.split(' ')[0];
+    setMessages([
+      { sender: 'bot', text: `Thanks, ${firstName}! I see you're interested in ${interest}. What specific details or requirements are you looking for today?` }
+    ]);
+
+    // 2. Silent background lead capture via Formspree
+    try {
+      await fetch('https://formspree.io/f/mqpeyvpo', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          subject: `🔥 New AI Lead: ${name} is interested in ${interest}`,
+          name: name,
+          email: email,
+          interest: interest,
+          status: 'Captured via Naya Pre-Chat'
+        })
+      });
+    } catch (error) {
+      console.error("Silent lead capture failed, but chat continues.", error);
+    }
+  };
+
+  const handleInboundMessage = (text: string) => {
+    if (!text.trim()) return;
+    
+    setMessages(prev => [...prev, { sender: 'user', text }]);
+    setInput('');
+    setIsTyping(true);
+
+    setTimeout(() => {
+      setIsTyping(false);
+      const newTurnCount = turnCount + 1;
+      setTurnCount(newTurnCount);
+
+      if (newTurnCount >= 3) {
+        // Trigger handoff after 3 user replies
+        setChatStage('HANDOFF');
+        setMessages(prev => [...prev, { sender: 'bot', text: "It sounds like you have specific technical requirements. To ensure you get accurate pricing and engineering specs, I'm going to pass this chat over to our human sales team. Please use the secure links below to continue!" }]);
+      } else {
+        // Dynamic conversational filler for turns 1 and 2
+        let botReply = "";
+        if (newTurnCount === 1) {
+          botReply = `Got it. Our ${interest || 'solutions'} are fully customizable for the Nigerian market. Are you looking to deploy this for a single facility, or is this a larger multi-site rollout?`;
+        } else {
+          botReply = "Understood. That's a scenario our engineering team handles frequently. Do you have an estimated timeline or capacity requirement mapped out yet?";
+        }
+        setMessages(prev => [...prev, { sender: 'bot', text: botReply }]);
+      }
+    }, 1200);
+  };
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!input.trim()) return;
-
-    const userMsg = input.trim();
-    setMessages(prev => [...prev, { sender: 'user', text: userMsg }]);
-    setInput('');
-
-    setTimeout(() => {
-      let botReply = "I can certainly help with that! For detailed pricing, custom specifications, or a formal site assessment, let's connect you directly with our sales team.";
-      
-      const lower = userMsg.toLowerCase();
-      if (lower.includes('meter') || lower.includes('dds') || lower.includes('dtss')) {
-        botReply = "We supply single-phase, three-phase, and CT-operated smart meters compliant with NEMSA standards. Would you like to connect with our team to discuss your requirements?";
-      } else if (lower.includes('solar') || lower.includes('mini-grid') || lower.includes('battery')) {
-        botReply = "Our distributed energy portfolio includes solar home systems, hybrid inverters, and digitally managed mini-grids. Let's connect you with our power systems team for a custom consultation!";
-      }
-
-      setMessages(prev => [...prev, { sender: 'bot', text: botReply }]);
-    }, 800);
+    handleInboundMessage(input);
   };
 
   const redirectToWhatsApp = () => {
-    const text = encodeURIComponent("Hello Candela Team, I am browsing your website and would like to discuss a power solution / product inquiry.");
+    const text = encodeURIComponent(`Hello Candela Team. My name is ${name} (${email}). I was speaking with your AI regarding ${interest}, and I would like to discuss my project further.`);
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
   };
 
   const redirectToEmail = () => {
-    const subject = encodeURIComponent("Website Inquiry: Candela Power Solutions");
-    const body = encodeURIComponent("Hello Candela Sales Team,\n\nI am reaching out from your website and would like to request more information regarding...\n\n[Please add your inquiry details here]");
+    const subject = encodeURIComponent(`Website Inquiry: ${interest} - ${name}`);
+    const body = encodeURIComponent(`Hello Candela Sales Team,\n\nI was browsing your website and speaking with Naya regarding ${interest}.\n\nName: ${name}\nEmail: ${email}\n\nI would like to request more technical details and pricing regarding my project.\n\nThank you.`);
     window.location.href = `mailto:${SALES_EMAIL}?subject=${subject}&body=${body}`;
   };
 
@@ -69,13 +141,14 @@ export default function AiSalesBot() {
           <span className="font-medium hidden md:inline text-sm">Chat with Naya</span>
         </button>
       ) : (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl w-80 md:w-96 flex flex-col overflow-hidden transition-all">
-          <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-4 border-b border-slate-800 flex items-center justify-between">
+        <div className="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl w-80 md:w-96 flex flex-col overflow-hidden transition-all">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-4 border-b border-slate-700 flex items-center justify-between z-10">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
               <div>
                 <h3 className="font-semibold text-sm text-slate-100">Naya</h3>
-                <p className="text-xs text-slate-400">Online | Instant Support</p>
+                <p className="text-xs text-slate-400">Virtual Sales Assistant</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-white transition-colors">
@@ -83,38 +156,116 @@ export default function AiSalesBot() {
             </button>
           </div>
 
-          <div className="p-4 h-72 overflow-y-auto flex flex-col gap-3 bg-slate-950/50 text-sm">
-            {messages.map((m, idx) => (
-              <div key={idx} className={`p-3 rounded-xl max-w-[85%] ${m.sender === 'user' ? 'bg-red-600 text-white self-end ml-auto' : 'bg-slate-800 text-slate-200 self-start'}`}>
-                {m.text}
+          {/* STAGE 1: Lead Capture Form */}
+          {chatStage === 'COLLECT' && (
+            <div className="p-6 bg-slate-950 flex flex-col gap-4">
+              <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-sm text-slate-300 mb-2">
+                Hello! I can help you explore Candela's solutions. Before we begin, please share your details so I can assist you better.
               </div>
-            ))}
-          </div>
-
-          <div className="px-4 py-3 bg-slate-900/90 border-t border-slate-800 flex flex-col gap-2">
-            <span className="text-xs text-slate-400 text-center">Connect directly with our human sales team:</span>
-            <div className="flex gap-2 justify-center">
-              <button onClick={redirectToWhatsApp} className="flex-1 flex items-center justify-center gap-1.5 bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-400 text-xs font-semibold py-2 px-3 rounded-lg border border-emerald-800/40 transition-colors">
-                <PhoneCall className="w-3.5 h-3.5" /> WhatsApp
-              </button>
-              <button onClick={redirectToEmail} className="flex-1 flex items-center justify-center gap-1.5 bg-blue-950/40 hover:bg-blue-900/60 text-blue-400 text-xs font-semibold py-2 px-3 rounded-lg border border-blue-800/40 transition-colors">
-                <Mail className="w-3.5 h-3.5" /> Email
-              </button>
+              <form onSubmit={handleStartChat} className="flex flex-col gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-400 mb-1">Full Name</label>
+                  <input 
+                    type="text" 
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-red-500 transition-colors"
+                    placeholder="John Doe"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-400 mb-1">Email Address</label>
+                  <input 
+                    type="email" 
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-red-500 transition-colors"
+                    placeholder="you@company.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-400 mb-1">Primary Interest</label>
+                  <select 
+                    required
+                    value={interest}
+                    onChange={(e) => setInterest(e.target.value)}
+                    className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-red-500 transition-colors appearance-none"
+                  >
+                    <option value="" disabled>Select a product category...</option>
+                    {productCategories.map((cat, i) => (
+                      <option key={i} value={cat}>{cat}</option>
+                    ))}
+                  </select>
+                </div>
+                <button 
+                  type="submit"
+                  className="mt-2 w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2 transition-colors text-sm shadow-lg shadow-red-600/20"
+                >
+                  Start Conversation <ChevronRight className="w-4 h-4" />
+                </button>
+              </form>
             </div>
-          </div>
+          )}
 
-          <form onSubmit={handleSend} className="p-3 bg-slate-900 border-t border-slate-800 flex gap-2">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask Naya about meters, solar..."
-              className="flex-grow bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-red-500"
-            />
-            <button type="submit" className="bg-red-600 hover:bg-red-700 text-white p-2 rounded-lg transition-colors flex items-center justify-center">
-              <Send className="w-4 h-4" />
-            </button>
-          </form>
+          {/* STAGE 2 & 3: Chat Interface */}
+          {chatStage !== 'COLLECT' && (
+            <>
+              <div className="p-4 h-80 overflow-y-auto flex flex-col gap-4 bg-slate-950 text-sm">
+                {messages.map((m, idx) => (
+                  <div key={idx} className={`p-3 rounded-xl max-w-[85%] leading-relaxed ${m.sender === 'user' ? 'bg-slate-700 text-white self-end ml-auto' : 'bg-slate-800 border border-slate-700 text-slate-200 self-start shadow-md'}`}>
+                    {m.text}
+                  </div>
+                ))}
+                
+                {isTyping && (
+                  <div className="bg-slate-800 border border-slate-700 text-slate-400 p-3 rounded-xl max-w-[85%] self-start flex items-center gap-1.5 shadow-md w-16 h-10">
+                    <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                    <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                    <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
+              </div>
+
+              {/* Handoff Buttons appear prominently when chatStage is HANDOFF */}
+              {chatStage === 'HANDOFF' && (
+                <div className="px-4 py-4 bg-slate-900 border-t border-slate-700 flex flex-col gap-3 z-10 shadow-[0_-10px_20px_rgba(0,0,0,0.3)]">
+                  <span className="text-xs text-slate-300 text-center font-medium block">
+                    Tap below to transfer this context to our team:
+                  </span>
+                  <div className="flex gap-2 justify-center">
+                    <button onClick={redirectToWhatsApp} className="flex-1 flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-3 px-3 rounded-lg transition-colors shadow-lg shadow-emerald-900/50">
+                      <PhoneCall className="w-4 h-4" /> WhatsApp Team
+                    </button>
+                    <button onClick={redirectToEmail} className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-3 px-3 rounded-lg transition-colors shadow-lg shadow-blue-900/50">
+                      <Mail className="w-4 h-4" /> Email Sales
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Chat Input (Disabled during HANDOFF) */}
+              <form onSubmit={handleSend} className="p-3 bg-slate-900 border-t border-slate-800 flex gap-2">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder={chatStage === 'HANDOFF' ? "Chat ended." : "Type your reply..."}
+                  className="flex-grow bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-red-500 disabled:opacity-50"
+                  disabled={isTyping || chatStage === 'HANDOFF'}
+                />
+                <button 
+                  type="submit" 
+                  disabled={!input.trim() || isTyping || chatStage === 'HANDOFF'}
+                  className="bg-red-600 hover:bg-red-500 disabled:opacity-50 disabled:hover:bg-red-600 text-white p-2 rounded-lg transition-colors flex items-center justify-center"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              </form>
+            </>
+          )}
         </div>
       )}
     </div>
