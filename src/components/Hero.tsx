@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, Zap, BarChart3 } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Zap, BarChart3, PackageSearch } from 'lucide-react'; // Added PackageSearch icon
 import { Link } from 'react-router-dom';
 import flareImg from '../assets/flare-gas-facility.jpg';
 
@@ -25,7 +25,7 @@ export const Hero: React.FC = () => {
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-            At Candela Energy Limited , we design and deliver intelligent clean energy solutions, advanced gas monetization, and real-time telemetry systems that help industrial operators reduce overhead and accelerate sustainability targets.
+            At Candela Energy Limited, we design and deliver intelligent clean energy solutions, advanced gas monetization, and real-time telemetry systems that help industrial operators reduce overhead and accelerate sustainability targets.
           </p>
 
           <div className="my-8 p-4 rounded-2xl bg-slate-900/90 border border-slate-800 backdrop-blur-md flex flex-wrap justify-around items-center gap-4 text-center">
@@ -40,7 +40,8 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          {/* Call To Action Buttons */}
+          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
             <a 
               href="#contact" 
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20"
@@ -48,13 +49,22 @@ export const Hero: React.FC = () => {
               Request Site Assessment
               <ArrowRight className="w-4 h-4" />
             </a>
+
+            {/* NEW Catalogue Button */}
+            <Link 
+              to="/catalogue" 
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-sm transition-all shadow-lg shadow-red-600/20"
+            >
+              <PackageSearch className="w-4 h-4" />
+              Explore Product Catalogue
+            </Link>
             
             <Link 
               to="/thought-leadership" 
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-sm transition-all"
             >
               <BarChart3 className="w-4 h-4 text-emerald-400" />
-              Explore Thought Leadership Articles
+              Insights
             </Link>
           </div>
 
