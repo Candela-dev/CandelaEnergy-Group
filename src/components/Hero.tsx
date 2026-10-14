@@ -1,18 +1,13 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, Zap, BarChart3, PackageSearch } from 'lucide-react'; // Added PackageSearch icon
+import { ArrowRight, ShieldCheck, Zap, BarChart3, PackageSearch, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import flareImg from '../assets/flare-gas-facility.jpg';
 
 export const Hero: React.FC = () => {
   return (
     <section id="hero" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-slate-950 text-white">
-      {/* Local Flare Gas Facility Background Image */}
       <div className="absolute inset-0 z-0 opacity-35 mix-blend-luminosity">
-        <img 
-          src={flareImg} 
-          alt="Candela Gas Processing Infrastructure" 
-          className="w-full h-full object-cover"
-        />
+        <img src={flareImg} alt="Candela Gas Processing" className="w-full h-full object-cover"/>
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/85 to-slate-950 z-0" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none z-0" />
@@ -40,31 +35,44 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Call To Action Buttons */}
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
-            <a 
-              href="#contact" 
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20"
-            >
-              Request Site Assessment
-              <ArrowRight className="w-4 h-4" />
+            <a href="#contact" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20">
+              Request Site Assessment <ArrowRight className="w-4 h-4" />
             </a>
 
-            {/* NEW Catalogue Button */}
-            <Link 
-              to="/catalogue" 
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-sm transition-all shadow-lg shadow-red-600/20"
-            >
-              <PackageSearch className="w-4 h-4" />
-              Explore Product Catalogue
-            </Link>
+            {/* Hover Dropdown Group for Catalogue */}
+            <div className="relative group w-full sm:w-auto">
+              <Link to="/catalogue" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-sm transition-all shadow-lg shadow-red-600/20">
+                <PackageSearch className="w-4 h-4" />
+                Explore Catalogue
+                <ChevronDown className="w-4 h-4 opacity-70 group-hover:rotate-180 transition-transform duration-300" />
+              </Link>
+              
+              {/* Dropdown Menu */}
+              <div className="absolute left-0 top-full mt-2 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-left overflow-hidden">
+                <Link to="/catalogue" className="block px-4 py-3 text-sm text-white hover:bg-slate-800 border-b border-slate-700 font-semibold">
+                  View Entire Catalogue
+                </Link>
+                <Link to="/catalogue#metering" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                  01 / Metering Portfolio
+                </Link>
+                <Link to="/catalogue#hes-ami" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                  02 / HES & AMI Architecture
+                </Link>
+                <Link to="/catalogue#iiot" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                  03 / Connected Assets & IIoT
+                </Link>
+                <Link to="/catalogue#vending" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                  04 / Power Share Vending
+                </Link>
+                <Link to="/catalogue#solar" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                  05 / Distributed Energy & Solar
+                </Link>
+              </div>
+            </div>
             
-            <Link 
-              to="/thought-leadership" 
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-sm transition-all"
-            >
-              <BarChart3 className="w-4 h-4 text-emerald-400" />
-              Insights
+            <Link to="/thought-leadership" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-sm transition-all">
+              <BarChart3 className="w-4 h-4 text-emerald-400" /> Insights
             </Link>
           </div>
 
