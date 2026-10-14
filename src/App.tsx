@@ -2,9 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Global Layout Components
-import { ScrollToTop } from './components/ScrollToTop'; // Added import
+import { ScrollToTop } from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import AiSalesBot from './components/AiSalesBot'; // Added Naya AI Assistant
 
 // Homepage Components
 import Hero from './components/Hero';
@@ -17,6 +18,7 @@ import SavingsCalculator from './components/SavingsCalculator';
 import Insights from './components/Insights';
 import Contact from './components/Contact';
 import Clients from './pages/Clients';
+
 // Dedicated Pages
 import ThoughtLeadership from './pages/ThoughtLeadership';
 import Letterhead from './components/Letterhead';
@@ -26,6 +28,7 @@ import EnergyAnalytics from './pages/EnergyAnalytics';
 import DownstreamPetroleum from './pages/DownstreamPetroleum';
 import GasPowerInfrastructure from './pages/GasPowerInfrastructure';
 import UpstreamPetroleum from './pages/UpstreamPetroleum';
+import Catalogue from './pages/Catalogue'; // Added Catalogue Page
 
 function App() {
   return (
@@ -62,6 +65,7 @@ function App() {
             {/* Utility & Content Pages */}
             <Route path="/thought-leadership" element={<ThoughtLeadership />} />
             <Route path="/letterhead" element={<Letterhead />} />
+            <Route path="/catalogue" element={<Catalogue />} /> {/* Product Catalogue Route */}
             
             {/* Core Service Detail Routes */}
             <Route path="/services/gas-power-infrastructure" element={<GasPowerInfrastructure />} />
@@ -73,6 +77,9 @@ function App() {
             <Route path="/clients" element={<Clients />} />
           </Routes>
         </main>
+
+        {/* Floating AI Assistant (Naya) */}
+        <AiSalesBot />
 
         {/* Footer */}
         <Footer />
