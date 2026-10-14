@@ -5,12 +5,16 @@ import flareImg from '../assets/flare-gas-facility.jpg';
 
 export const Hero: React.FC = () => {
   return (
-    <section id="hero" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-slate-950 text-white">
-      <div className="absolute inset-0 z-0 opacity-35 mix-blend-luminosity">
-        <img src={flareImg} alt="Candela Gas Processing" className="w-full h-full object-cover"/>
+    <section id="hero" className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-slate-950 text-white">
+      
+      {/* Background Wrapper: Contains overflow-hidden to prevent scrollbars without clipping dropdowns */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute inset-0 opacity-35 mix-blend-luminosity">
+          <img src={flareImg} alt="Candela Gas Processing" className="w-full h-full object-cover"/>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/85 to-slate-950" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-500/10 blur-[120px] rounded-full" />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/85 to-slate-950 z-0" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
