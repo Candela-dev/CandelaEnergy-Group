@@ -48,7 +48,7 @@ export const Hero: React.FC = () => {
                 <ChevronDown className="w-4 h-4 opacity-70 group-hover:rotate-180 transition-transform duration-300" />
               </Link>
               
-              {/* Dropdown Menu with Candela Color Matrix Hovers */}
+              {/* Dropdown Menu */}
               <div className="absolute left-0 top-full mt-2 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-left overflow-hidden">
                 <Link to="/catalogue" className="block px-4 py-3 text-sm text-white hover:bg-slate-800 border-b border-slate-700 font-semibold transition-colors">
                   View Entire Catalogue
@@ -67,6 +67,9 @@ export const Hero: React.FC = () => {
                 </Link>
                 <Link to="/catalogue#solar" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-red-500 hover:text-white transition-colors">
                   Distributed Energy & Solar
+                </Link>
+                <Link to="/catalogue#transformers" className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-purple-600 hover:text-white transition-colors">
+                  Transformer Services
                 </Link>
               </div>
             </div>
